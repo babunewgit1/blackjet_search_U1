@@ -1,0 +1,2003 @@
+.acl_search {
+  background-color: #5d5d5d;
+  padding: 10px 0px;
+}
+
+.acls_left_way ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #8a8a8a;
+  text-align: center;
+  padding: 8px;
+}
+
+.acls_left_way ul li {
+  font-size: 16px;
+  color: #ffffff;
+  padding: 7px 8px;
+  padding-bottom: 7px;
+  padding-bottom: 9px;
+}
+
+.twoway_input {
+  display: none;
+}
+.oneway_input .acls_left_date {
+  grid-template-columns: 1fr;
+}
+
+.acls_left_way ul li.active {
+  background-color: #000;
+}
+
+.acls_left_way_place {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #fff;
+  padding: 8px 10px;
+}
+
+.acls_left_way p {
+  font-size: 16px;
+  color: #fff;
+}
+
+.acls_left_way img {
+  display: inline-block;
+  width: 15px;
+}
+
+.acls_left_way {
+  white-space: nowrap;
+}
+
+.acls_right_way {
+  text-align: right;
+}
+
+.ffullname,
+.tfullname {
+  margin-left: 10px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  top: 7px;
+}
+
+.acls_left_way_icon {
+  text-align: center;
+}
+
+.fshortname {
+  font-size: 16px;
+  background-color: #8a8a8a;
+  padding: 5px 8px;
+  padding-bottom: 4px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.acls_left_way_icon img {
+  display: inline-block;
+  width: 20px;
+}
+
+.tshortname {
+  font-size: 16px;
+  background-color: #8a8a8a;
+  padding: 5px 8px;
+  padding-bottom: 4px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.acls_left_date {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.acls_left_way_input {
+  grid-template-columns: 1.2fr 0.8fr 5.3125rem !important;
+}
+
+.acls_left_date_from,
+.acls_left_person {
+  border: 1px solid #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acls_left_date_from p img {
+  display: inline-block;
+  width: 18px;
+  margin-right: 8px;
+}
+
+.acls_left_person img {
+  display: inline-block;
+  width: 16px;
+  margin-right: 8px;
+}
+
+.acls_left_person span {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.acls_right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.acls_right button {
+  display: inline-block;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+}
+
+.acls_right button img {
+  display: inline-block;
+  width: 25px;
+}
+
+.acls_right button:hover {
+  opacity: 0.7;
+}
+
+/* search popup code */
+.acls_popup {
+  background-color: #5d5d5d;
+  padding: 25px 0px;
+}
+
+.acls_popup_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.acls_popup_header_left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.acls_popup_header_left p {
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.acls_popup_header_left p span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+.acls_popup_header_left p.active span {
+  position: relative;
+  border-width: 8px;
+}
+
+.acls_popup_header_left p.active span:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.acls_popup_header_right span {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.acls_popup_header_right span img {
+  display: inline-block;
+  width: 15px;
+}
+
+.aclspop_input_single .onewaybj {
+  display: grid;
+  grid-template-columns: calc(100% - 200px) 184px;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.acls_pop_main {
+  margin-top: 16px;
+}
+
+.aclspop_input_single .bjf_grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.aclspop_input_single .acls_main_left,
+.aclspop_input_round_block .acls_main_left {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.aclspop_input_single .acls_main_right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.aclspop_input_round_block .acls_main_right {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.acls_popup input {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: none;
+  padding-right: 40px;
+}
+
+.acls_popup input.expaxinput {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.date_block input,
+.empax_wrapper input {
+  background-image: none;
+}
+
+.empax_wrapper input {
+  text-align: center;
+}
+
+.empax_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.empax_minus {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1c1c;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  padding-bottom: 4px;
+  cursor: pointer;
+}
+
+.empax_plus {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1c1c;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.onewaysubmit,
+.roundtrip {
+  display: block;
+  width: 100%;
+  letter-spacing: 0.125rem;
+  background-color: #fff;
+  text-align: center;
+  color: #000;
+  cursor: pointer;
+  padding: 16px 0px;
+  transition: all 0.2s ease;
+}
+
+.onewaysubmit:hover,
+.roundtrip:hover {
+  opacity: 0.7;
+}
+
+.aclspop_input_round_block .onewaybj {
+  display: grid;
+  grid-template-columns: calc(100% - 200px) 184px;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.aclspop_input_round_block .bjf_grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr !important;
+}
+
+.acls_pop_main .aclspop_input_round {
+  display: none;
+}
+
+.acls_pop_main .active {
+  display: block;
+}
+
+.ac_search_popup {
+  background-color: rgba(0, 0, 0, 0.9);
+  height: calc(100vh - 88px);
+  position: fixed;
+  left: 0;
+  top: 88px;
+  z-index: 999;
+  width: 100%;
+  display: none;
+}
+.oneway_input {
+  grid-template-columns: 1.5fr 0.5fr 5.3125rem !important;
+}
+
+/* algolio search css */
+.uniqueid,
+.shortcode,
+.airportshort {
+  display: none;
+}
+
+.eminputblock {
+  position: relative;
+}
+
+.search-results {
+  background-color: #fff;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  left: 0;
+  top: 58px;
+  z-index: 99;
+  width: 365px;
+}
+
+.emfieldnamewrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  margin: 0;
+  background-color: #fff;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.emfieldnamewrapper p {
+  margin: 0;
+}
+
+.emfieldnamewrapper img {
+  display: inline-block;
+  width: 24px;
+}
+
+p.uniqueid {
+  display: none;
+}
+
+.emfieldnamewrapper:hover {
+  background-color: #ddd;
+}
+
+.portid {
+  display: none;
+}
+
+.add-search-input {
+  margin-right: 20px;
+}
+
+.remove {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove img {
+  display: inline-block;
+  width: 45px;
+}
+
+.remove:hover {
+  opacity: 0.7;
+}
+
+.cityname,
+.airportcity {
+  display: none;
+}
+
+/* css for which element are generated from api */
+.ap_aircraft {
+  background-color: #fff;
+  border: 1px solid transparent;
+  margin: 14px 0px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ap_aircraft:hover {
+  border-color: #8a8a8a;
+}
+
+.ap_aircraft_details {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  padding: 14px;
+  align-items: center;
+}
+
+.apac_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apac_img img {
+  display: block;
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+.apac_details {
+  padding: 0px 16px;
+}
+
+.apac_details h4 {
+  font-size: 22px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+}
+
+.apac_details p {
+  font-size: 14px;
+  color: #5d5d5d;
+  border: 1px solid #c0c0c0;
+  padding: 1px 5px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.ap_aircraft_details_price {
+  text-align: center;
+  position: relative;
+}
+
+.ap_aircraft_details_price:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 80px;
+  position: absolute;
+  left: 8px;
+  top: -14px;
+  background-color: #5d5d5d;
+}
+
+.ap_aircraft_toptip h4 {
+  font-size: 22px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+}
+
+.ap_aircraft_toptip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+  left: 10px;
+}
+
+.ap_aircraft_tip_text {
+  position: relative;
+}
+
+.ap_aircraft_tip_text p {
+  position: absolute;
+}
+
+.ap_aircraft_tip_text span {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ap_aircraft_tip_text img {
+  display: inline-block;
+  width: 16px;
+  position: relative;
+  top: -2px;
+}
+
+.ap_aircraft_details_price p {
+  font-size: 16px;
+  color: #5f5f5f;
+  margin-top: 2px;
+}
+
+.ap_aircraft_tip_text p {
+  position: absolute;
+  min-width: 300px;
+  background: #545454;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  left: calc(0% - 255px);
+  top: -44px;
+  color: #fff !important;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: all 0.1s ease;
+  z-index: 99;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.ap_aircraft_tip_text p:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 1px;
+  border-top: 6px solid #545454;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  position: absolute;
+  right: 30px;
+  bottom: -7px;
+}
+
+.ap_aircraft_tip_text:hover p {
+  transform: scaleY(1);
+}
+
+.ap_aircraft_message {
+  display: grid;
+  grid-template-columns: 1fr 145px;
+}
+
+.ap_aircraft_message_left {
+  background-color: #5d5d5d;
+  text-align: center;
+  padding: 7px;
+}
+
+.ap_aircraft_message_left p {
+  font-size: 14px;
+  color: #fff;
+}
+
+.ap_aircraft_message_right button {
+  display: block;
+  width: 100%;
+  padding: 7px;
+  background-color: #000000;
+  border-left: 1px solid #fff;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.ap_aircraft_message_right button:hover {
+  opacity: 0.7;
+}
+
+.ap_aircraft_continue {
+  text-align: right;
+  padding: 10px;
+  display: none;
+}
+
+.ap_aircraft_continue a {
+  display: inline-block;
+  background-color: #000000;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 14px 55px;
+  transition: all 0.3s ease;
+}
+
+.ap_aircraft_continue a img {
+  display: inline-block;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.ap_aircraft_continue a:hover {
+  opacity: 0.7;
+}
+
+.ac_result {
+  /* height: calc(100vh - 165px); */
+  background-color: #f1f1f1;
+}
+
+.ac_result_cnt {
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.active {
+  border-color: #8a8a8a;
+}
+
+/* code for map - start */
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.airport-marker {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  font-size: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.airport-info {
+  background-color: #333a42;
+  padding: 5px 8px;
+  border-radius: 3px 0 0 3px;
+  display: flex;
+  align-items: center;
+}
+
+.airport-info .plane-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  transform: rotate(270deg);
+  fill: white;
+}
+.airport-info.destination .plane-icon {
+  transform: rotate(90deg);
+}
+
+.airport-code {
+  background-color: #000000;
+  padding: 5px 8px;
+  border-radius: 0 3px 3px 0;
+  font-weight: bold;
+}
+
+/* code for map - end */
+
+/* code for right side - start */
+.ac_result_right {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.depair_item_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.depair_item_left h3 {
+  margin: 0;
+  font-size: 17px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #5d5d5d;
+  line-height: 1;
+}
+
+.depair_item_left p {
+  font-size: 13px;
+  color: #5d5d5d;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.depair_item_right p {
+  font-size: 16px;
+  color: #000;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  border: 1px solid #000;
+  line-height: 1;
+  padding: 5px 12px 6px 12px;
+}
+
+.depair_item_wrapper {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.depair_item_left p span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #5d5d5d;
+  border-radius: 50%;
+  margin: 0px 4px;
+}
+
+.short_code p {
+  font-size: 16px;
+  font-family: Knul, sans-serif;
+  color: #5d5d5d;
+  border: 1px solid #5d5d5d;
+  font-weight: 500;
+  padding: 3px 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding-bottom: 4px;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.short_code p:hover {
+  background-color: #5d5d5d;
+  color: #fff;
+}
+
+.depair_item_wrapper:hover {
+  background-color: #5d5d5d;
+}
+
+.depair_item_wrapper:hover .depair_item_left h3,
+.depair_item_wrapper:hover .depair_item_left p {
+  color: #ffffff;
+}
+
+.depair_item_wrapper:hover .depair_item_right p {
+  color: #fff;
+  border-color: #fff;
+}
+
+.depair_item_wrapper:hover .depair_item_left p span {
+  background-color: #fff;
+}
+
+.depair_item.active .depair_item_left h3,
+.depair_item.active .depair_item_left p {
+  color: #ffffff;
+}
+
+.depair_item.active .depair_item_right p {
+  color: #fff;
+  border-color: #fff;
+}
+
+.depair_item.active .depair_item_left p span {
+  background-color: #fff;
+}
+
+.depair_item.active {
+  background-color: #5d5d5d;
+}
+
+.ac_dep_heading_right {
+  transition: all 0.2s ease;
+}
+
+.active_rightbar .ac_dep_heading_right {
+  transform: rotate(-180deg);
+}
+
+.active_rightbar .ac_dep_heading {
+  flex-direction: column-reverse;
+  gap: 15px;
+}
+
+.active_rightbar .ac_dep_heading_left_name,
+.active_rightbar .ac_dep_heading_left_idrop {
+  display: none;
+}
+
+.ac_result_active {
+  grid-template-columns: 1fr 1.9fr 0.1fr;
+}
+
+.active_rightbar .depair_item_wrapper {
+  display: none;
+}
+.short_code {
+  display: none;
+}
+
+.active_rightbar .short_code {
+  display: block;
+}
+
+.active .short_code p {
+  color: #fff;
+}
+
+.mapboxgl-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ac_result_map {
+  background-color: #fff;
+}
+
+.active_rightbar .see_more_text {
+  display: none;
+}
+
+.active_rightbar .ac_dep_see {
+  padding: 14px 0.625rem;
+  margin-top: 12px !important;
+}
+
+.dep_hover_cnt {
+  box-shadow: rgba(0, 0, 0, 0.08) -30px 10px 50px 15px;
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 99;
+  left: 0;
+  top: 35px;
+}
+
+.ac_dep_heading_left_idrop:hover .dep_hover_cnt {
+  display: block;
+}
+
+.arr_hover_cnt::after {
+  left: 40% !important;
+}
+
+p.dep_hover_heading {
+  font-size: 16px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: rgb(38, 69, 98);
+}
+
+p.dep_hover_para {
+  font-size: 14px;
+  font-family: Knul, sans-serif;
+  line-height: 1.2;
+  color: rgb(70, 96, 121);
+}
+
+.dep_hover_cnt:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 1px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translate(-50%, -50%);
+}
+
+.see_more_arrow {
+  transition: all 0.3s ease;
+}
+
+.expanded .see_more_arrow {
+  transform: rotate(180deg);
+}
+
+.ac_result_option_oval {
+  transition: all 0.3s ease;
+}
+
+.active_fleet .ac_result_option_oval {
+  border-width: 6px;
+}
+
+.acls_left_way .acls_right {
+  display: none;
+}
+
+/* code for right side - end */
+
+/* code for loading screen - start */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  text-align: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner p {
+  color: #333;
+  font-size: 16px;
+  margin: 0;
+}
+
+.price_block_gen {
+  display: grid;
+  grid-template-columns: 1fr 138px;
+  align-items: center;
+}
+
+.ap_aircraft {
+  display: none;
+}
+
+.ac_result_cnt .ap_aircraft:first-child {
+  display: block;
+}
+
+.ac_result_cnt .ap_aircraft:nth-child(2) {
+  display: block;
+}
+
+.ac_result_cnt .ap_aircraft:nth-child(3) {
+  display: block;
+}
+
+.roted img {
+  transform: rotate(180deg);
+}
+
+.release .ap_aircraft {
+  display: block !important;
+}
+
+.ac_result_left {
+  min-height: 700px;
+}
+
+/* code for loading screen - end */
+
+/*
+====================================
+    Responsive Code Start
+====================================
+*/
+@media screen and (min-width: 1340px) and (max-width: 1500px) {
+  .ap_aircraft_details {
+    padding: 6px;
+    grid-template-columns: 115px 1fr;
+  }
+
+  .apac_img img {
+    height: 74px;
+  }
+
+  .apac_details h4 {
+    font-size: 18px;
+  }
+
+  .apac_details p {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .price_block_gen {
+    grid-template-columns: 1fr 100px;
+  }
+
+  .ap_aircraft_toptip h4 {
+    font-size: 18px;
+  }
+
+  .ap_aircraft_details_price p {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .ap_aircraft_message {
+    grid-template-columns: 1fr 99px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1340px) {
+  .ac_result_left {
+    padding-left: 10px;
+  }
+
+  .ac_result_cnt {
+    margin-top: 0.5rem;
+  }
+
+  .ap_aircraft_details {
+    padding: 10px;
+    display: block;
+  }
+
+  .apac_details {
+    padding: 0;
+  }
+
+  .price_block_gen {
+    grid-template-columns: 1fr 95px;
+  }
+
+  .ap_aircraft_message {
+    grid-template-columns: 1fr 97px;
+  }
+
+  .apac_details p {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .ap_aircraft_toptip h4 {
+    font-size: 18px;
+  }
+
+  .ap_aircraft_details_price p {
+    font-size: 14px;
+    margin-top: 0px;
+  }
+
+  .ap_aircraft_message_left p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .ap_aircraft_message_right button {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .ac_result_option {
+    grid-column-gap: 2rem;
+  }
+
+  .ac_result_option_text {
+    font-size: 14px;
+  }
+
+  .depair_item_wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .dep_hover_cnt {
+    width: 12.75rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .desktop_setting {
+    display: none;
+  }
+
+  .acls_left_way .acls_right {
+    display: block;
+  }
+
+  .acls_left_way {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .acls_element {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .acls_left_way ul {
+    padding: 5px;
+  }
+
+  .acls_left_way ul li {
+    padding: 2px 4px;
+    padding-bottom: 2px;
+    padding-bottom: 3px;
+  }
+
+  .oneway_input {
+    grid-template-columns: 2fr 1fr 1fr 1fr !important;
+  }
+
+  .acls_left_way_place {
+    grid-column: span 2;
+    grid-template-columns: 1fr 25px 1fr;
+  }
+
+  .ffullname,
+  .tfullname {
+    margin: 0;
+  }
+
+  .tshortname {
+    margin-right: 0;
+  }
+
+  .acls_left_way p,
+  .fshortname,
+  .tshortname {
+    font-size: 14px;
+  }
+
+  .fshortname,
+  .tshortname {
+    padding: 1px 4px;
+    position: relative;
+    top: -3px;
+  }
+
+  .acls_left_way p img {
+    display: none;
+  }
+
+  .acls_left_way_place {
+    padding: 4px;
+  }
+
+  .acls_right_way p {
+    width: 100%;
+  }
+
+  .ffullname,
+  .tfullname {
+    top: 5px;
+  }
+
+  .acls_left_date_from,
+  .acls_left_person,
+  .acls_left_person span {
+    font-size: 14px;
+  }
+
+  .acls_left_date_from p img,
+  .acls_left_person img {
+    margin-right: 8px;
+    position: relative;
+    top: -2px;
+    width: 15px;
+  }
+
+  .acls_left_date_from,
+  .acls_left_person {
+    padding: 6px 4px;
+  }
+
+  .acls_left_way_input {
+    grid-row-gap: 10px;
+  }
+
+  .ac_result_left {
+    padding: 0px 0px;
+  }
+
+  .ac_result {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ac_result_left {
+    order: 2;
+  }
+
+  .ac_result_map {
+    order: 1;
+    width: 100%;
+    height: 400px;
+  }
+
+  .ac_result_right {
+    order: 3;
+  }
+
+  .ac_result_left {
+    padding: 22px 10px;
+  }
+
+  .ap_aircraft_details {
+    gap: 40px;
+  }
+
+  .apac_img {
+    display: block;
+  }
+
+  .ac_result {
+    height: auto;
+  }
+
+  .ac_result_option {
+    grid-column-gap: 2rem;
+  }
+
+  .ac_result_cnt {
+    margin-top: 0.4rem;
+  }
+  .apac_img img {
+    display: block;
+    width: auto;
+    height: 100px;
+  }
+
+  .ac_result_cnt,
+  .apac_details {
+    padding: 0;
+  }
+
+  .ap_aircraft_details_price {
+    text-align: left;
+    line-height: 1;
+  }
+
+  .ap_aircraft_details_price p {
+    text-align: center !important;
+  }
+
+  .price_block_gen {
+    grid-template-columns: 1fr 114px;
+  }
+
+  .ap_aircraft_details_price p {
+    margin-left: 20px;
+  }
+
+  .ap_aircraft_message {
+    grid-template-columns: 1fr 120px;
+  }
+
+  .ap_aircraft_message_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    border-left: 1px solid #fff;
+  }
+
+  .ap_aircraft_message_right button {
+    border: 0;
+  }
+
+  .apac_details p,
+  .ap_aircraft_message_left p {
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .ap_aircraft_details {
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .ac_search_popup {
+    background-color: #5d5d5d;
+    height: calc(100vh - 80px);
+    top: 80px;
+  }
+
+  .aclspop_input_single .onewaybj,
+  .aclspop_input_single .bjf_grid,
+  .acls_main_right,
+  .aclspop_input_round_block .onewaybj,
+  .aclspop_input_round_block .bjf_grid {
+    display: block !important;
+  }
+
+  .aclspop_input_single .acls_main_left,
+  .aclspop_input_round_block .acls_main_left {
+    display: block;
+  }
+
+  .acls_popup input {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+  .acls_popup input::placehoder {
+    color: #fff;
+    opacity: 1;
+  }
+
+  .plan_filter_form_input {
+    background-image: url(https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6847fd2df873ed50e2d0c9bd_plane.svg);
+    background-size: 22px;
+  }
+
+  .eminputblock {
+    margin-bottom: 25px;
+  }
+
+  .search-results {
+    width: 100%;
+  }
+
+  .search-results p {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .acls_popup {
+    background-color: transparent;
+  }
+
+  .ac_dep_heading_right {
+    display: none;
+  }
+
+  .more_arrow {
+    display: block !important;
+    transition: all 0.3s ease;
+    transform: rotate(180deg);
+  }
+
+  .more_arrow.rotedArrow {
+    transform: rotate(0deg);
+  }
+
+  .areatoggle {
+    display: none;
+  }
+
+  .ac_result_right {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .ac_dep.mt1-5 {
+    margin-top: 0.8rem;
+  }
+
+  .ac_result_left {
+    min-height: auto;
+  }
+
+  .ap_aircraft_details {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .desktop_setting {
+    display: none;
+  }
+
+  .acls_left_way .acls_right {
+    display: block;
+  }
+
+  .acls_left_way {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .acls_element {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .acls_left_way ul {
+    padding: 5px;
+  }
+
+  .acls_left_way ul li {
+    padding: 2px 4px;
+    padding-bottom: 2px;
+    padding-bottom: 3px;
+  }
+
+  .oneway_input {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .acls_left_way_place {
+    grid-column: span 2;
+    grid-template-columns: 1fr 25px 1fr;
+  }
+
+  .ffullname,
+  .tfullname {
+    margin: 0;
+  }
+
+  .tshortname {
+    margin-right: 0;
+  }
+
+  .acls_left_way p,
+  .fshortname,
+  .tshortname {
+    font-size: 14px;
+  }
+
+  .fshortname,
+  .tshortname {
+    padding: 1px 4px;
+    position: relative;
+    top: -3px;
+  }
+
+  .acls_left_way p img {
+    display: none;
+  }
+
+  .acls_left_way_place {
+    padding: 4px;
+  }
+
+  .acls_right_way p {
+    width: 100%;
+  }
+
+  .ffullname,
+  .tfullname {
+    top: 5px;
+  }
+
+  .acls_left_date_from,
+  .acls_left_person,
+  .acls_left_person span {
+    font-size: 14px;
+  }
+
+  .acls_left_date_from p img,
+  .acls_left_person img {
+    margin-right: 8px;
+    position: relative;
+    top: -2px;
+    width: 15px;
+  }
+
+  .acls_left_date_from,
+  .acls_left_person {
+    padding: 6px 4px;
+  }
+
+  .acls_left_way_input {
+    grid-row-gap: 10px;
+  }
+
+  .ac_result_left {
+    padding: 0px 0px;
+  }
+
+  .ac_result {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ac_result_left {
+    order: 2;
+  }
+
+  .ac_result_map {
+    order: 1;
+    width: 100%;
+    height: 400px;
+  }
+
+  .ac_result_right {
+    order: 3;
+  }
+
+  .ac_result_left {
+    padding: 22px 10px;
+  }
+
+  .ap_aircraft_details {
+    display: block;
+  }
+
+  .apac_img {
+    display: block;
+  }
+
+  .ac_result {
+    height: auto;
+  }
+
+  .ac_result_option {
+    grid-column-gap: 2rem;
+  }
+
+  .ac_result_cnt {
+    margin-top: 0.4rem;
+  }
+  .apac_img img {
+    display: block;
+    width: auto;
+    height: 100px;
+  }
+
+  .ac_result_cnt,
+  .apac_details {
+    padding: 0;
+  }
+
+  .ap_aircraft_details_price {
+    text-align: left;
+    line-height: 1;
+  }
+
+  .ap_aircraft_details_price p {
+    text-align: center !important;
+  }
+
+  .price_block_gen {
+    grid-template-columns: 1fr 114px;
+  }
+
+  .ap_aircraft_details_price p {
+    margin-left: 20px;
+  }
+
+  .ap_aircraft_message {
+    grid-template-columns: 1fr 120px;
+  }
+
+  .ap_aircraft_message_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    border-left: 1px solid #fff;
+  }
+
+  .ap_aircraft_message_right button {
+    border: 0;
+  }
+
+  .apac_details p,
+  .ap_aircraft_message_left p {
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .ap_aircraft_details {
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .ac_search_popup {
+    background-color: #5d5d5d;
+    height: calc(100vh - 80px);
+    top: 80px;
+  }
+
+  .aclspop_input_single .onewaybj,
+  .aclspop_input_single .bjf_grid,
+  .acls_main_right,
+  .aclspop_input_round_block .onewaybj,
+  .aclspop_input_round_block .bjf_grid {
+    display: block !important;
+  }
+
+  .aclspop_input_single .acls_main_left,
+  .aclspop_input_round_block .acls_main_left {
+    display: block;
+  }
+
+  .acls_popup input {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+  .acls_popup input::placehoder {
+    color: #fff;
+    opacity: 1;
+  }
+
+  .plan_filter_form_input {
+    background-image: url(https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6847fd2df873ed50e2d0c9bd_plane.svg);
+    background-size: 22px;
+  }
+
+  .eminputblock {
+    margin-bottom: 25px;
+  }
+
+  .search-results {
+    width: 100%;
+  }
+
+  .search-results p {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .acls_popup {
+    background-color: transparent;
+  }
+
+  .ac_dep_heading_right {
+    display: none;
+  }
+
+  .more_arrow {
+    display: block !important;
+    transition: all 0.3s ease;
+    transform: rotate(180deg);
+  }
+
+  .more_arrow.rotedArrow {
+    transform: rotate(0deg);
+  }
+
+  .areatoggle {
+    display: none;
+  }
+
+  .ac_result_right {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .ac_dep.mt1-5 {
+    margin-top: 0.8rem;
+  }
+
+  .ac_result_left {
+    min-height: auto;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .desktop_setting {
+    display: none;
+  }
+
+  .acls_left_way .acls_right {
+    display: block;
+  }
+
+  .acls_left_way {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .acls_element {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .acls_left_way ul {
+    padding: 5px;
+  }
+
+  .acls_left_way ul li {
+    padding: 2px 4px;
+    padding-bottom: 2px;
+    padding-bottom: 3px;
+  }
+
+  .oneway_input {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .acls_left_way_place {
+    grid-column: span 2;
+    grid-template-columns: 1fr 25px 1fr;
+  }
+
+  .ffullname,
+  .tfullname {
+    margin: 0;
+  }
+
+  .tshortname {
+    margin-right: 0;
+  }
+
+  .acls_left_way p,
+  .fshortname,
+  .tshortname {
+    font-size: 14px;
+  }
+
+  .fshortname,
+  .tshortname {
+    padding: 1px 4px;
+    position: relative;
+    top: -3px;
+  }
+
+  .acls_left_way p img {
+    display: none;
+  }
+
+  .acls_left_way_place {
+    padding: 4px;
+  }
+
+  .acls_right_way p {
+    width: 100%;
+  }
+
+  .ffullname,
+  .tfullname {
+    top: 5px;
+  }
+
+  .acls_left_date_from,
+  .acls_left_person,
+  .acls_left_person span {
+    font-size: 14px;
+  }
+
+  .acls_left_date_from p img,
+  .acls_left_person img {
+    margin-right: 8px;
+    position: relative;
+    top: -2px;
+    width: 15px;
+  }
+
+  .acls_left_date_from,
+  .acls_left_person {
+    padding: 6px 4px;
+  }
+
+  .acls_left_way_input {
+    grid-row-gap: 10px;
+  }
+
+  .ac_result_left {
+    padding: 0px 0px;
+  }
+
+  .ac_result {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ac_result_left {
+    order: 2;
+  }
+
+  .ac_result_map {
+    order: 1;
+    width: 100%;
+    height: 400px;
+  }
+
+  .ac_result_right {
+    order: 3;
+  }
+
+  .ac_result_left {
+    padding: 22px 10px;
+  }
+
+  .ap_aircraft_details {
+    display: block;
+  }
+
+  .apac_img {
+    display: block;
+  }
+
+  .ac_result {
+    height: auto;
+  }
+
+  .ac_result_option {
+    grid-column-gap: 2rem;
+  }
+
+  .ac_result_cnt {
+    margin-top: 0.4rem;
+  }
+  .apac_img img {
+    display: block;
+    width: auto;
+    height: 100px;
+  }
+
+  .ac_result_cnt,
+  .apac_details {
+    padding: 0;
+  }
+
+  .ap_aircraft_details_price {
+    text-align: left;
+    line-height: 1;
+  }
+
+  .ap_aircraft_details_price p {
+    text-align: center !important;
+  }
+
+  .price_block_gen {
+    grid-template-columns: 1fr 114px;
+  }
+
+  .ap_aircraft_details_price p {
+    margin-left: 20px;
+  }
+
+  .ap_aircraft_message {
+    grid-template-columns: 1fr 120px;
+  }
+
+  .ap_aircraft_message_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    border-left: 1px solid #fff;
+  }
+
+  .ap_aircraft_message_right button {
+    border: 0;
+  }
+
+  .apac_details p,
+  .ap_aircraft_message_left p {
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .ap_aircraft_details {
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .ac_search_popup {
+    background-color: #5d5d5d;
+    height: calc(100vh - 80px);
+    top: 80px;
+  }
+
+  .aclspop_input_single .onewaybj,
+  .aclspop_input_single .bjf_grid,
+  .acls_main_right,
+  .aclspop_input_round_block .onewaybj,
+  .aclspop_input_round_block .bjf_grid {
+    display: block !important;
+  }
+
+  .aclspop_input_single .acls_main_left,
+  .aclspop_input_round_block .acls_main_left {
+    display: block;
+  }
+
+  .acls_popup input {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+  .acls_popup input::placehoder {
+    color: #fff;
+    opacity: 1;
+  }
+
+  .plan_filter_form_input {
+    background-image: url(https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6847fd2df873ed50e2d0c9bd_plane.svg);
+    background-size: 22px;
+  }
+
+  .eminputblock {
+    margin-bottom: 25px;
+  }
+
+  .search-results {
+    width: 100%;
+  }
+
+  .search-results p {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .acls_popup {
+    background-color: transparent;
+  }
+
+  .ac_dep_heading_right {
+    display: none;
+  }
+
+  .more_arrow {
+    display: block !important;
+    transition: all 0.3s ease;
+    transform: rotate(180deg);
+  }
+
+  .more_arrow.rotedArrow {
+    transform: rotate(0deg);
+  }
+
+  .areatoggle {
+    display: none;
+  }
+
+  .ac_result_right {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .ac_dep.mt1-5 {
+    margin-top: 0.8rem;
+  }
+
+  .ac_result_left {
+    min-height: auto;
+  }
+}
+
+/*
+====================================
+    Responsive Code End
+====================================
+*/
