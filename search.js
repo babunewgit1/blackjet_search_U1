@@ -178,65 +178,154 @@ async function makeApiCall() {
     }
 
     // Use aircraftResponse.aircraft for the rest of your code
+    // const acResultCnt = document.querySelector(".ac_result_cnt");
+    // const apiAircraft = aircraftResponse.aircraft;
+    // acResultCnt.innerHTML = "";
+    // if (acResultCnt && apiAircraft) {
+    //   apiAircraft.forEach((aircraft) => {
+    //     acResultCnt.innerHTML += `
+    //       <div class="ap_aircraft">
+    //         <div class="ap_aircraft_details">
+    //           <div class="apac_img">
+    //             <img src="${aircraft.aircraft_image_image}" alt="" />
+    //           </div>
+    //           <div class="price_block_gen">
+    //             <div class="apac_details">
+    //               <h4>${aircraft.category_text}</h4>
+    //               <p>${aircraft.models_text}</p>
+    //             </div>
+    //             <div class="ap_aircraft_details_price">
+    //               <div class="ap_aircraft_toptip">
+    //                 <h4><sup>$</sup>${Math.round(
+    //                   aircraft.price_number
+    //                 ).toLocaleString()} </h4>
+    //                 <div class="ap_aircraft_tip_text">
+    //                 <span><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6825cd8e306cd13add181479_toltip.png" alt="" /></span>
+    //                 <p>Total includes taxes and Government Imposed Passenger Fee and fees</p>
+    //                 </div>
+    //               </div>
+    //               <p>${aircraft.flight_time_text}</p>
+    //             </div>
+    //           </div>
+    //         </div>
+    //         <div class="ap_aircraft_message">
+    //           <div class="ap_aircraft_message_left">
+    //             <p>${aircraft.message_text}</p>
+    //           </div>
+    //           <div class="ap_aircraft_message_right">
+    //             <button>Learn More</button>
+    //           </div>
+    //         </div>
+    //         <div class="ap_aircraft_continue" style="display: none;">
+    //           <a href="#">CoNtinue <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="" /></a>
+    //         </div>
+    //       </div>
+    //     `;
+    //   });
+    //   // Show/hide .see_arrow based on .ap_aircraft count
+    //   const seeArrow = document.querySelector(".see_arrow");
+    //   const aircraftItems = acResultCnt.querySelectorAll(".ap_aircraft");
+    //   if (seeArrow) {
+    //     if (aircraftItems.length > 3) {
+    //       seeArrow.style.display = "block";
+    //     } else {
+    //       seeArrow.style.display = "none";
+    //     }
+    //   }
+
+    //   seeArrow.addEventListener("click", function () {
+    //     seeArrow.classList.toggle("roted");
+    //     document.querySelector(".ac_result_cnt").classList.toggle("release");
+    //   });
+
+    //   document.querySelectorAll(".ap_aircraft").forEach((aircraft) => {
+    //     aircraft.addEventListener("click", function () {
+    //       const continueDiv = this.querySelector(".ap_aircraft_continue");
+    //       continueDiv.style.display =
+    //         continueDiv.style.display === "none" ? "block" : "none";
+    //       this.classList.toggle("active");
+    //     });
+    //   });
+    //   document
+    //     .querySelectorAll(".ap_aircraft_message_right button")
+    //     .forEach((button) => {
+    //       button.addEventListener("click", function (e) {
+    //         e.stopPropagation();
+    //         const matchingFleetItems =
+    //           aircraftResponse.sample_fleet_list.filter((item) =>
+    //             apiAircraft.sample_fleet_list_list_custom_blackjet_sample_fleet.includes(
+    //               item._id
+    //             )
+    //           );
+
+    //           const matchedFleet = data.sample_fleet_list.filter(fleet =>
+    //             aircraft.sample_fleet_list_list_custom_blackjet_sample_fleet.includes(fleet._id)
+    //           );
+    //           console.log(`Matching fleet for ${aircraft.models_text}:`, matchedFleet);
+    //         console.log("Matching Fleet Items:", matchingFleetItems);
+    //       });
+    //     });
+    // }
+
     const acResultCnt = document.querySelector(".ac_result_cnt");
+    const airPopUp = document.querySelector(".airpopup");
     const apiAircraft = aircraftResponse.aircraft;
+    const sampleFleetList = aircraftResponse.sample_fleet_list;
     acResultCnt.innerHTML = "";
+
     if (acResultCnt && apiAircraft) {
-      apiAircraft.forEach((aircraft) => {
+      apiAircraft.forEach((aircraft, index) => {
         acResultCnt.innerHTML += `
-          <div class="ap_aircraft">
-            <div class="ap_aircraft_details">  
-              <div class="apac_img">
-                <img src="${aircraft.aircraft_image_image}" alt="" />
-              </div>
-              <div class="price_block_gen">
-                <div class="apac_details">
-                  <h4>${aircraft.category_text}</h4>
-                  <p>${aircraft.models_text}</p>
-                </div>
-                <div class="ap_aircraft_details_price">
-                  <div class="ap_aircraft_toptip">
-                    <h4><sup>$</sup>${Math.round(
-                      aircraft.price_number
-                    ).toLocaleString()} </h4>
-                    <div class="ap_aircraft_tip_text">
-                    <span><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6825cd8e306cd13add181479_toltip.png" alt="" /></span>
-                    <p>Total includes taxes and Government Imposed Passenger Fee and fees</p>
-                    </div>
-                  </div>
-                  <p>${aircraft.flight_time_text}</p>
+      <div class="ap_aircraft" data-index="${index}">
+        <div class="ap_aircraft_details">  
+          <div class="apac_img">
+            <img src="${aircraft.aircraft_image_image}" alt="" />
+          </div>
+          <div class="price_block_gen">
+            <div class="apac_details">
+              <h4>${aircraft.category_text}</h4>
+              <p>${aircraft.models_text}</p>
+            </div>
+            <div class="ap_aircraft_details_price">
+              <div class="ap_aircraft_toptip">
+                <h4><sup>$</sup>${Math.round(
+                  aircraft.price_number
+                ).toLocaleString()} </h4>
+                <div class="ap_aircraft_tip_text">
+                  <span><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6825cd8e306cd13add181479_toltip.png" alt="" /></span>
+                  <p>Total includes taxes and Government Imposed Passenger Fee and fees</p>
                 </div>
               </div>
-            </div>
-            <div class="ap_aircraft_message">
-              <div class="ap_aircraft_message_left">
-                <p>${aircraft.message_text}</p>
-              </div>
-              <div class="ap_aircraft_message_right">
-                <button>Learn More</button>
-              </div>
-            </div>
-            <div class="ap_aircraft_continue" style="display: none;">
-              <a href="#">CoNtinue <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="" /></a>
+              <p>${aircraft.flight_time_text}</p>
             </div>
           </div>
-        `;
+        </div>
+        <div class="ap_aircraft_message">
+          <div class="ap_aircraft_message_left">
+            <p>${aircraft.message_text}</p>
+          </div>
+          <div class="ap_aircraft_message_right">
+            <button class="learn-more-btn" data-index="${index}">Learn More</button>
+          </div>
+        </div>
+        <div class="ap_aircraft_continue" style="display: none;">
+          <a href="#">Continue <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="" /></a>
+        </div>
+      </div>
+    `;
       });
-      // Show/hide .see_arrow based on .ap_aircraft count
+
       const seeArrow = document.querySelector(".see_arrow");
       const aircraftItems = acResultCnt.querySelectorAll(".ap_aircraft");
-      if (seeArrow) {
-        if (aircraftItems.length > 3) {
-          seeArrow.style.display = "block";
-        } else {
-          seeArrow.style.display = "none";
-        }
-      }
 
-      seeArrow.addEventListener("click", function () {
-        seeArrow.classList.toggle("roted");
-        document.querySelector(".ac_result_cnt").classList.toggle("release");
-      });
+      if (seeArrow) {
+        seeArrow.style.display = aircraftItems.length > 3 ? "block" : "none";
+
+        seeArrow.addEventListener("click", function () {
+          seeArrow.classList.toggle("roted");
+          document.querySelector(".ac_result_cnt").classList.toggle("release");
+        });
+      }
 
       document.querySelectorAll(".ap_aircraft").forEach((aircraft) => {
         aircraft.addEventListener("click", function () {
@@ -246,14 +335,28 @@ async function makeApiCall() {
           this.classList.toggle("active");
         });
       });
-      document
-        .querySelectorAll(".ap_aircraft_message_right button")
-        .forEach((button) => {
-          button.addEventListener("click", function (e) {
-            e.stopPropagation();
-            alert("link clicked");
+
+      document.querySelectorAll(".learn-more-btn").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          e.stopPropagation();
+          airPopUp.innerHTML = `
+            <div>${aircraft.category_text}</div>
+            <div class="flightItem">
+            </div>
+          `;
+          const index = this.getAttribute("data-index");
+          const aircraft = apiAircraft[index];
+          const matchedFleet = sampleFleetList.filter((fleet) =>
+            aircraft.sample_fleet_list1_list_custom_blackjet_sample_fleet.includes(
+              fleet._id
+            )
+          );
+
+          matchedFleet.forEach((matchedItem) => {
+            console.log(matchedItem._id);
           });
         });
+      });
     }
 
     //! creating map start
