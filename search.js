@@ -339,11 +339,9 @@ async function makeApiCall() {
       document.querySelectorAll(".learn-more-btn").forEach((button) => {
         button.addEventListener("click", function (e) {
           e.stopPropagation();
-          airPopUp.innerHTML = `
-            <div>${aircraft.category_text}</div>
-            <div class="flightItem">
-            </div>
-          `;
+          document.querySelector(".airc_pop_wrapper").style.display = "flex";
+          document.querySelector("body").style.overflow = "hidden";
+          airPopUp.innerHTML = "";
           const index = this.getAttribute("data-index");
           const aircraft = apiAircraft[index];
           const matchedFleet = sampleFleetList.filter((fleet) =>
@@ -352,9 +350,93 @@ async function makeApiCall() {
             )
           );
 
+          airPopUp.innerHTML = `
+            <div class="airpopup-content">
+             <div class="airup_cnt_heading">
+                <h3>${aircraft.category_text}</h3>
+                <span class="close-popup"><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123d9f2800197a5c59ee0a_crossx.png" alt="cross icon" /></span>
+             </div>
+             <div class="airup_cnt_discription">
+              <p>${aircraft.category_description_text}</p>
+             </div>
+             <div class="ariup_feature">
+              <div class="airupf_item">
+                <p> <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68519626e858c6c8d960758a_clock.png" alt="time icon" /> ${
+                  aircraft.flight_time_text
+                }</p>
+              </div>
+              ${
+                aircraft.minibar__boolean
+                  ? `
+              <div class="airupf_item">
+                <p> <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/685196262f78b69ae5779e94_glass.png" alt="icon" /> Mini bar</p>
+              </div>
+              `
+                  : ""
+              }
+              ${
+                aircraft.restroom__boolean
+                  ? `
+              <div class="airupf_item">
+                <p> <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/685196268349fe3d55e0b49b_restroom.png" alt="icon" /> Restroom</p>
+              </div>
+              `
+                  : ""
+              }
+              ${
+                aircraft.wifi__boolean
+                  ? `
+              <div class="airupf_item">
+                <p> <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6851962627e66b384a53a152_wifi.png" alt="icon" /> Wi-fi</p>
+              </div>
+              `
+                  : ""
+              }
+             </div>
+             <div class="aircraft_class_wrapper">
+              <h3>Aircraft in this class</h3>
+              <div class="aircraft_class_cnt">
+                <div class="ac_flightItem">
+                ${matchedFleet
+                  .map(
+                    (fleet) => `
+                  <div class="ac_fleet-item">
+                    <div class="acfi_left">
+                      <img src="${fleet.image_image}" alt="aircraft_img" />
+                    </div>
+                    <div class="acfi_right">
+                      <h3>${fleet.display_text}</h3>
+                      <div class="acfi_right_feature">
+                        <ul>
+                          <li>${fleet.seats_text}</li>
+                          <li>${fleet.luggage_text}</li>
+                          <li>${fleet.speed_text}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                `
+                  )
+                  .join("")}
+              </div>
+              </div>
+             </div>
+              
+            </div>
+          `;
+
           matchedFleet.forEach((matchedItem) => {
             console.log(matchedItem._id);
           });
+
+          // Add click event listener to close popup
+          document
+            .querySelector(".close-popup")
+            .addEventListener("click", function () {
+              document.querySelector(".airc_pop_wrapper").style.display =
+                "none";
+              document.querySelector("body").style.overflow = "visible";
+            });
         });
       });
     }
