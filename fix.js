@@ -311,6 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toIdInput,
         fromShortCode,
         toShortCode,
+        fleet: "EQUITY",
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
@@ -455,18 +456,6 @@ function handleSeeMoreToggle(containerClass, buttonClass) {
 
 handleSeeMoreToggle(".ac_dept_block_cnt", ".seemore_dep");
 handleSeeMoreToggle(".ac_arrive_block_cnt", ".seemore_arive");
-
-// code for Reserve Fleet and Equity Fleet switching.
-const fleetItem = document.querySelectorAll(".ac_result_option_wrapper");
-
-fleetItem.forEach((fleet) => {
-  fleet.addEventListener("click", function () {
-    fleetItem.forEach((fl) => {
-      fl.classList.remove("active_fleet");
-    });
-    fleet.classList.add("active_fleet");
-  });
-});
 
 // mobile version Departure and Arrival arrow function
 function controlList(arrowIcon, area) {

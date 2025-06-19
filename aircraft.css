@@ -1160,6 +1160,32 @@ p.dep_hover_para {
   justify-content: center;
 }
 
+.ac_dep_loop .depair_item_click,
+.ac_arive_loop .airval_item_click {
+  display: none;
+}
+
+.ac_dep_loop .depair_item_click:first-child,
+.ac_dep_loop .depair_item_click:nth-child(2),
+.ac_dep_loop .depair_item_click:nth-child(3),
+.ac_dep_loop .depair_item_click:nth-child(4),
+.ac_dep_loop .depair_item_click:nth-child(5) {
+  display: block;
+}
+
+.ac_arive_loop .airval_item_click:first-child,
+.ac_arive_loop .airval_item_click:nth-child(2),
+.ac_arive_loop .airval_item_click:nth-child(3),
+.ac_arive_loop .airval_item_click:nth-child(4),
+.ac_arive_loop .airval_item_click:nth-child(5) {
+  display: block;
+}
+
+.expanded .ac_dep_loop .depair_item_click,
+.expanded .ac_arive_loop .airval_item_click {
+  display: block !important;
+}
+
 /* ---code for similar aircraft popup end--- */
 
 /*

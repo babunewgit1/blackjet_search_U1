@@ -108,6 +108,7 @@ async function makeApiCall() {
             App_Out_Date_As_Text: getStoredData.appDate,
             pax: getStoredData.pax,
             date: getStoredData.timeStamp * 1000,
+            fleet: getStoredData.fleet,
           }
         : {
             "out-dep airport id": getStoredData.fromId,
@@ -177,95 +178,19 @@ async function makeApiCall() {
       return;
     }
 
-    // Use aircraftResponse.aircraft for the rest of your code
-    // const acResultCnt = document.querySelector(".ac_result_cnt");
-    // const apiAircraft = aircraftResponse.aircraft;
-    // acResultCnt.innerHTML = "";
-    // if (acResultCnt && apiAircraft) {
-    //   apiAircraft.forEach((aircraft) => {
-    //     acResultCnt.innerHTML += `
-    //       <div class="ap_aircraft">
-    //         <div class="ap_aircraft_details">
-    //           <div class="apac_img">
-    //             <img src="${aircraft.aircraft_image_image}" alt="" />
-    //           </div>
-    //           <div class="price_block_gen">
-    //             <div class="apac_details">
-    //               <h4>${aircraft.category_text}</h4>
-    //               <p>${aircraft.models_text}</p>
-    //             </div>
-    //             <div class="ap_aircraft_details_price">
-    //               <div class="ap_aircraft_toptip">
-    //                 <h4><sup>$</sup>${Math.round(
-    //                   aircraft.price_number
-    //                 ).toLocaleString()} </h4>
-    //                 <div class="ap_aircraft_tip_text">
-    //                 <span><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6825cd8e306cd13add181479_toltip.png" alt="" /></span>
-    //                 <p>Total includes taxes and Government Imposed Passenger Fee and fees</p>
-    //                 </div>
-    //               </div>
-    //               <p>${aircraft.flight_time_text}</p>
-    //             </div>
-    //           </div>
-    //         </div>
-    //         <div class="ap_aircraft_message">
-    //           <div class="ap_aircraft_message_left">
-    //             <p>${aircraft.message_text}</p>
-    //           </div>
-    //           <div class="ap_aircraft_message_right">
-    //             <button>Learn More</button>
-    //           </div>
-    //         </div>
-    //         <div class="ap_aircraft_continue" style="display: none;">
-    //           <a href="#">CoNtinue <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="" /></a>
-    //         </div>
-    //       </div>
-    //     `;
-    //   });
-    //   // Show/hide .see_arrow based on .ap_aircraft count
-    //   const seeArrow = document.querySelector(".see_arrow");
-    //   const aircraftItems = acResultCnt.querySelectorAll(".ap_aircraft");
-    //   if (seeArrow) {
-    //     if (aircraftItems.length > 3) {
-    //       seeArrow.style.display = "block";
-    //     } else {
-    //       seeArrow.style.display = "none";
-    //     }
-    //   }
-
-    //   seeArrow.addEventListener("click", function () {
-    //     seeArrow.classList.toggle("roted");
-    //     document.querySelector(".ac_result_cnt").classList.toggle("release");
-    //   });
-
-    //   document.querySelectorAll(".ap_aircraft").forEach((aircraft) => {
-    //     aircraft.addEventListener("click", function () {
-    //       const continueDiv = this.querySelector(".ap_aircraft_continue");
-    //       continueDiv.style.display =
-    //         continueDiv.style.display === "none" ? "block" : "none";
-    //       this.classList.toggle("active");
-    //     });
-    //   });
-    //   document
-    //     .querySelectorAll(".ap_aircraft_message_right button")
-    //     .forEach((button) => {
-    //       button.addEventListener("click", function (e) {
-    //         e.stopPropagation();
-    //         const matchingFleetItems =
-    //           aircraftResponse.sample_fleet_list.filter((item) =>
-    //             apiAircraft.sample_fleet_list_list_custom_blackjet_sample_fleet.includes(
-    //               item._id
-    //             )
-    //           );
-
-    //           const matchedFleet = data.sample_fleet_list.filter(fleet =>
-    //             aircraft.sample_fleet_list_list_custom_blackjet_sample_fleet.includes(fleet._id)
-    //           );
-    //           console.log(`Matching fleet for ${aircraft.models_text}:`, matchedFleet);
-    //         console.log("Matching Fleet Items:", matchingFleetItems);
-    //       });
-    //     });
-    // }
+    // After receiving aircraftResponse (2nd API response)
+    // Add logic to toggle active_fleet class based on aircraftResponse.fleet
+    if (aircraftResponse && aircraftResponse.fleet) {
+      const eqflElem = document.querySelector(".eqfl");
+      const rbsflElem = document.querySelector(".rbsfl");
+      if (aircraftResponse.fleet === "EQUITY") {
+        if (eqflElem) eqflElem.classList.add("active_fleet");
+        if (rbsflElem) rbsflElem.classList.remove("active_fleet");
+      } else if (aircraftResponse.fleet === "RESERVE") {
+        if (rbsflElem) rbsflElem.classList.add("active_fleet");
+        if (eqflElem) eqflElem.classList.remove("active_fleet");
+      }
+    }
 
     const acResultCnt = document.querySelector(".ac_result_cnt");
     const airPopUp = document.querySelector(".airpopup");
@@ -819,24 +744,41 @@ async function makeApiCall() {
 
           // Add active class to clicked item
           this.classList.add("active");
-
           const airportId = this.getAttribute("data-id");
-          handleAirportClick(airportId, "fromId");
 
-          // Check if item count is more than 5
-          const itemCount =
-            document.querySelectorAll(".depair_item_click").length;
-          const seeMoreElement = document.querySelector(
-            ".ac_dep_see.seemore_dep"
-          );
+          // Find the matching airport data from API response
+          const selectedAirport =
+            aircraftResponse.other_departure_airports.find(
+              (airport) => airport.airport_id_text === airportId
+            );
 
-          if (itemCount > 5 && seeMoreElement) {
-            seeMoreElement.style.display = "block";
-          } else if (seeMoreElement) {
-            seeMoreElement.style.display = "none"; // Optional
+          if (selectedAirport) {
+            const currentData =
+              JSON.parse(sessionStorage.getItem("storeData")) || {};
+            // Update formIdInput with airport name
+            currentData.formIdInput = selectedAirport.airport_name_short_text;
+            // Update fromShortCode with appropriate code
+            currentData.fromShortCode =
+              selectedAirport.faa_code_text ||
+              selectedAirport.icao_code_text ||
+              selectedAirport.iata_code_text ||
+              "";
+            sessionStorage.setItem("storeData", JSON.stringify(currentData));
           }
+
+          handleAirportClick(airportId, "fromId");
         });
       });
+
+      // Display the see more button and click event for displaying all items for Departure
+      const itemCount = departureAirport.length;
+      const seeMoreElement = document.querySelector(".ac_dep_see.seemore_dep");
+
+      if (itemCount > 5 && seeMoreElement) {
+        seeMoreElement.style.display = "flex";
+      } else if (seeMoreElement) {
+        seeMoreElement.style.display = "none";
+      }
     }
 
     if (arrivalArea && arrivalAirport) {
@@ -866,7 +808,7 @@ async function makeApiCall() {
                   arrAirport.faa_code_text ||
                   arrAirport.icao_code_text ||
                   arrAirport.iata_code_text ||
-                  "N/A"
+                  ""
                 }
               </div>
               <div class="depair_item_wrapper">
@@ -908,25 +850,66 @@ async function makeApiCall() {
           this.classList.add("active");
 
           const airportId = this.getAttribute("data-id");
-          handleAirportClick(airportId, "toId");
 
-          // Check if item count is more than 5
-          const itemCount =
-            document.querySelectorAll(".airval_item_click").length;
-          const seeMoreElement = document.querySelector(
-            ".ac_dep_see.seemore_arive"
+          // Find the matching airport data from API response
+          const selectedAirport = aircraftResponse.other_arrival_airports.find(
+            (airport) => airport.airport_id_text === airportId
           );
 
-          if (itemCount > 5 && seeMoreElement) {
-            seeMoreElement.style.display = "block";
-          } else if (seeMoreElement) {
-            seeMoreElement.style.display = "none"; // Optional: hide if <= 5
+          if (selectedAirport) {
+            const currentData =
+              JSON.parse(sessionStorage.getItem("storeData")) || {};
+            // Update toIdInput with airport name
+            currentData.toIdInput = selectedAirport.airport_name_short_text;
+            // Update toShortCode with appropriate code
+            currentData.toShortCode =
+              selectedAirport.faa_code_text ||
+              selectedAirport.icao_code_text ||
+              selectedAirport.iata_code_text ||
+              "";
+            sessionStorage.setItem("storeData", JSON.stringify(currentData));
           }
+
+          handleAirportClick(airportId, "toId");
         });
       });
+
+      // Display the see more button and click event for displaying all items for Arrival
+      const itemCount = arrivalAirport.length;
+      const seeMoreElement = document.querySelector(
+        ".ac_dep_see.seemore_arive"
+      );
+
+      if (itemCount > 1 && seeMoreElement) {
+        seeMoreElement.style.display = "flex";
+      } else if (seeMoreElement) {
+        seeMoreElement.style.display = "none";
+      }
     }
 
     //? Code for right side content - end
+
+    // Add click event listeners for fleet toggles
+    const eqflElem = document.querySelector(".eqfl");
+    const rbsflElem = document.querySelector(".rbsfl");
+    if (eqflElem) {
+      eqflElem.addEventListener("click", function () {
+        const currentData =
+          JSON.parse(sessionStorage.getItem("storeData")) || {};
+        currentData.fleet = "EQUITY";
+        sessionStorage.setItem("storeData", JSON.stringify(currentData));
+        window.location.reload();
+      });
+    }
+    if (rbsflElem) {
+      rbsflElem.addEventListener("click", function () {
+        const currentData =
+          JSON.parse(sessionStorage.getItem("storeData")) || {};
+        currentData.fleet = "RESERVE";
+        sessionStorage.setItem("storeData", JSON.stringify(currentData));
+        window.location.reload();
+      });
+    }
 
     return { data, fromAirport, toAirport };
   } catch (error) {

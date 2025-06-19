@@ -236,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toIdInput,
         fromShortCode,
         toShortCode,
+        fleet: "EQUITY",
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
