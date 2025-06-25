@@ -189,6 +189,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Helper to convert 12-hour time to 24-hour format (HH:mm:ss)
+  function to24HourTime(timeStr) {
+    const [time, modifier] = timeStr.split(" ");
+    let [hours, minutes] = time.split(":");
+    if (modifier === "PM" && hours !== "12") hours = String(Number(hours) + 12);
+    if (modifier === "AM" && hours === "12") hours = "00";
+    return `${hours.padStart(2, "0")}:${minutes}:00`;
+  }
+
   // send form data to session storage
   const oneWaySubmit = document.querySelector(".onewaysubmit");
   const roundTripSubmit = document.querySelector(".roundtrip");
@@ -208,9 +217,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const pax = document.querySelector(".onewaypax").value;
     const appDate = dateAsText;
 
-    const combinedDateTime = `${dateAsText} ${timeAsText}`;
+    const isoTime = to24HourTime(timeAsText);
+    const combinedDateTime = `${dateAsText}T${isoTime}`;
     const dateObject = new Date(combinedDateTime);
-
     const timeStamp = Math.floor(dateObject.getTime() / 1000);
 
     if (
@@ -276,11 +285,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const appDate = dateAsText;
     const appDateReturn = returnDateAsText;
 
-    const combinedDateTime = `${dateAsText} ${timeAsText}`;
+    const isoTime = to24HourTime(timeAsText);
+    const combinedDateTime = `${dateAsText}T${isoTime}`;
     const dateObject = new Date(combinedDateTime);
     const timeStamp = Math.floor(dateObject.getTime() / 1000);
 
-    const combinedDateTimeReturn = `${returnDateAsText} ${timeAsTextReturn}`;
+    const isoTimeReturn = to24HourTime(timeAsTextReturn);
+    const combinedDateTimeReturn = `${returnDateAsText}T${isoTimeReturn}`;
     const dateObjectReturn = new Date(combinedDateTimeReturn);
     const timeStampReturn = Math.floor(dateObjectReturn.getTime() / 1000);
 

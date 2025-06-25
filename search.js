@@ -94,6 +94,15 @@ async function pollForAircraft(
   }
 }
 
+// Helper to convert 12-hour time to 24-hour format (HH:mm:ss)
+function to24HourTime(timeStr) {
+  const [time, modifier] = timeStr.split(" ");
+  let [hours, minutes] = time.split(":");
+  if (modifier === "PM" && hours !== "12") hours = String(Number(hours) + 12);
+  if (modifier === "AM" && hours === "12") hours = "00";
+  return `${hours.padStart(2, "0")}:${minutes}:00`;
+}
+
 // Function to make API call
 async function makeApiCall() {
   try {
@@ -120,7 +129,13 @@ async function makeApiCall() {
             time_as_text: getStoredData.timeAsText,
             App_Out_Date_As_Text: getStoredData.appDate,
             pax: getStoredData.pax,
-            date: getStoredData.timeStamp * 1000,
+            date:
+              ensureValidDate(
+                getStoredData.timeStamp,
+                `${getStoredData.dateAsText}T${to24HourTime(
+                  getStoredData.timeAsText
+                )}`
+              ) * 1000,
             fleet: getStoredData.fleet,
           }
         : {
@@ -128,8 +143,20 @@ async function makeApiCall() {
             "out-arr airport id": getStoredData.toId,
             "ret-dep airport id": getStoredData.returnFromId,
             "ret-arr airport id": getStoredData.returnToId,
-            "out-dep date": getStoredData.timeStamp * 1000,
-            "ret-date": getStoredData.timeStampReturn * 1000,
+            "out-dep date":
+              ensureValidDate(
+                getStoredData.timeStamp,
+                `${getStoredData.dateAsText}T${to24HourTime(
+                  getStoredData.timeAsText
+                )}`
+              ) * 1000,
+            "ret-date":
+              ensureValidDate(
+                getStoredData.timeStampReturn,
+                `${getStoredData.returnDateAsText}T${to24HourTime(
+                  getStoredData.timeAsTextReturn
+                )}`
+              ) * 1000,
             "out-pax": getStoredData.pax,
             "ret-pax": getStoredData.paxReturn,
             Dep_date_as_text: getStoredData.dateAsText,
@@ -957,3 +984,28 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Failed to make API call:", error);
   });
 });
+
+// Helper function for reliable date handling
+function createTimestamp(dateText) {
+  if (!dateText) return null;
+  try {
+    const [year, month, day] = dateText.split("-").map(Number);
+    if (isNaN(year) || isNaN(month) || isNaN(day)) return null;
+    const dateObject = new Date(Date.UTC(year, month - 1, day, 0, 0));
+    if (isNaN(dateObject.getTime())) return null;
+    // Convert to seconds for API
+    return Math.floor(dateObject.getTime() / 1000);
+  } catch (error) {
+    console.error("Error creating timestamp:", error);
+    return null;
+  }
+}
+
+// Helper function to ensure valid date
+function ensureValidDate(timestamp, dateText) {
+  if (!timestamp || timestamp === 0) {
+    // If timestamp is invalid, try to create one from dateText
+    return createTimestamp(dateText);
+  }
+  return timestamp;
+}
