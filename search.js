@@ -77,8 +77,26 @@ async function pollForAircraft(
 
     await new Promise((resolve) => setTimeout(resolve, interval));
   }
-  alert("No aircraft data found. Please search again");
-  return null;
+  // Make one final API call to check the latest data
+  const finalResponse = await fetch(apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ flightrequest: flightRequestId }),
+  });
+  const finalData = await finalResponse.json();
+  const finalApiResponse = finalData.response;
+
+  if (
+    finalApiResponse.aircraft.length === 0 ||
+    finalApiResponse.other_departure_airports.length === 0 ||
+    finalApiResponse.other_arrival_airports.length === 0
+  ) {
+    alert("No aircraft data found. Please search again");
+    return null;
+  } else {
+    // Return the latest data even if it doesn't match expected counts
+    return finalApiResponse;
+  }
 }
 
 // Function to make API call
