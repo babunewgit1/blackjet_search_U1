@@ -240,9 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
-      if (localStorage.getItem("aircraft_details")) {
-        localStorage.removeItem("aircraft_details");
-      }
+      localStorage.setItem("link", window.location.href);
       window.location.href = `/aircraft`;
     } else {
       alert("Please fill up the form properly");
@@ -319,12 +317,11 @@ document.addEventListener("DOMContentLoaded", function () {
         timeStampReturn,
         fromShortCode,
         toShortCode,
+        fleet: "EQUITY",
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
-      if (localStorage.getItem("aircraft_details")) {
-        localStorage.removeItem("aircraft_details");
-      }
+      localStorage.setItem("link", "babu");
       window.location.href = `/aircraft`;
     } else {
       alert("Please fill up the form properly");

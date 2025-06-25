@@ -315,9 +315,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
-      if (localStorage.getItem("aircraft_details")) {
-        localStorage.removeItem("aircraft_details");
-      }
       window.location.href = `/aircraft`;
     } else {
       alert("Please fill up the form properly");
@@ -397,9 +394,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
-      if (localStorage.getItem("aircraft_details")) {
-        localStorage.removeItem("aircraft_details");
-      }
       window.location.href = `/aircraft`;
     } else {
       alert("Please fill up the form properly");

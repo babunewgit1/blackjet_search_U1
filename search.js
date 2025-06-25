@@ -125,6 +125,7 @@ async function makeApiCall() {
             Ret_time_as_text: getStoredData.timeAsTextReturn,
             App_Out_Date_As_Text: getStoredData.appDate,
             App_Ret_Date_As_Text: getStoredData.appDateReturn,
+            fleet: getStoredData.fleet,
           };
 
     // First API call
@@ -880,7 +881,7 @@ async function makeApiCall() {
         ".ac_dep_see.seemore_arive"
       );
 
-      if (itemCount > 1 && seeMoreElement) {
+      if (itemCount > 5 && seeMoreElement) {
         seeMoreElement.style.display = "flex";
       } else if (seeMoreElement) {
         seeMoreElement.style.display = "none";
