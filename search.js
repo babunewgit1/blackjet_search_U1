@@ -86,16 +86,11 @@ async function pollForAircraft(
   const finalData = await finalResponse.json();
   const finalApiResponse = finalData.response;
 
-  if (
-    finalApiResponse.aircraft.length === 0 ||
-    finalApiResponse.other_departure_airports.length === 0 ||
-    finalApiResponse.other_arrival_airports.length === 0
-  ) {
+  if (finalApiResponse.aircraft.length > 0) {
+    return finalApiResponse;
+  } else {
     alert("No aircraft data found. Please search again");
     return null;
-  } else {
-    // Return the latest data even if it doesn't match expected counts
-    return finalApiResponse;
   }
 }
 
@@ -928,6 +923,22 @@ async function makeApiCall() {
         sessionStorage.setItem("storeData", JSON.stringify(currentData));
         window.location.reload();
       });
+    }
+
+    // Hide Departure and Arrival if needed
+    const deptopElem = document.querySelector(".ac_dept_block_cnt");
+    const arrivetopElem = document.querySelector(".ac_arrive_block_cnt");
+    const arrowIcon = document.querySelector(".ac_dep_heading_right");
+    const noDep = aircraftResponse.other_departure_airports.length === 0;
+    const noArr = aircraftResponse.other_arrival_airports.length === 0;
+    if (deptopElem && noDep) {
+      deptopElem.innerHTML = `<p class="no-airport">No Alternate Airports Nearby</p>`;
+    }
+    if (arrivetopElem && noArr) {
+      arrivetopElem.innerHTML = `<p class="no-airport">No Alternate Airports Nearby</p>`;
+    }
+    if (noDep && noArr) {
+      if (arrowIcon) arrowIcon.style.display = "none";
     }
 
     return { data, fromAirport, toAirport };

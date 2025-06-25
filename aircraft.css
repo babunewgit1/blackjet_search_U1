@@ -1186,6 +1186,15 @@ p.dep_hover_para {
   display: block !important;
 }
 
+.no-airport {
+  background-color: #5d5d5d;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  padding: 18px;
+}
+
 /* ---code for similar aircraft popup end--- */
 
 /*

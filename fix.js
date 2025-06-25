@@ -391,6 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
         timeStampReturn,
         fromShortCode,
         toShortCode,
+        fleet: "EQUITY",
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
