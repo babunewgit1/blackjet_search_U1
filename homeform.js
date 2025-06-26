@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       sessionStorage.setItem("storeData", JSON.stringify(storeData));
-      localStorage.setItem("link", "babu");
+      localStorage.setItem("link", window.location.href);
       window.location.href = `/aircraft`;
     } else {
       alert("Please fill up the form properly");

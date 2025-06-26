@@ -266,6 +266,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // code for if session storage is empty than it will redirect to previous page
+  const getsessionDate = sessionStorage.getItem("storeData");
+  const getstoredData = JSON.parse(getsessionDate);
+  const notFound = document.querySelector(".notfound");
+  const searchLink = document.querySelector(".notf_searchbtn a");
+  console.log(notFound);
+  if (!getstoredData) {
+    notFound.style.display = "flex";
+  }
+
+  searchLink.addEventListener("click", function () {
+    const redirectLink = localStorage.getItem("link") || "/";
+    window.location.href = redirectLink;
+  });
+
   // send form data to session storage
   const oneWaySubmit = document.querySelector(".onewaysubmit");
   const roundTripSubmit = document.querySelector(".roundtrip");
@@ -431,9 +446,10 @@ rightSideToggle.addEventListener("click", function () {
 });
 
 // Function to handle see more/less toggle
-function handleSeeMoreToggle(containerClass, buttonClass) {
+function handleSeeMoreToggle(containerClass, buttonClass, topClass) {
   const container = document.querySelector(containerClass);
   const button = document.querySelector(buttonClass);
+  const topdiv = document.querySelector(topClass);
   const textElement = button.querySelector(".see_more_text");
   const arrowElement = button.querySelector(".see_more_arrow");
 
@@ -445,12 +461,13 @@ function handleSeeMoreToggle(containerClass, buttonClass) {
         textElement.textContent = "See More";
       }
       container.classList.toggle("expanded");
+      topdiv.classList.toggle("overflow_more");
     });
   }
 }
 
-handleSeeMoreToggle(".ac_dept_block_cnt", ".seemore_dep");
-handleSeeMoreToggle(".ac_arrive_block_cnt", ".seemore_arive");
+handleSeeMoreToggle(".ac_dept_block_cnt", ".seemore_dep", ".ac_dep_loop");
+handleSeeMoreToggle(".ac_arrive_block_cnt", ".seemore_arive", ".ac_arive_loop");
 
 // mobile version Departure and Arrival arrow function
 function controlList(arrowIcon, area) {
@@ -461,6 +478,5 @@ function controlList(arrowIcon, area) {
     tiggerArea.classList.toggle("areatoggle");
   });
 }
-
 controlList(".deep_more", ".ac_dept_block_cnt");
 controlList(".arrival_more", ".ac_arrive_block_cnt");

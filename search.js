@@ -281,17 +281,17 @@ async function makeApiCall() {
     `;
       });
 
-      const seeArrow = document.querySelector(".see_arrow");
-      const aircraftItems = acResultCnt.querySelectorAll(".ap_aircraft");
+      // const seeArrow = document.querySelector(".see_arrow");
+      // const aircraftItems = acResultCnt.querySelectorAll(".ap_aircraft");
 
-      if (seeArrow) {
-        seeArrow.style.display = aircraftItems.length > 3 ? "block" : "none";
+      // if (seeArrow) {
+      //   seeArrow.style.display = aircraftItems.length > 3 ? "block" : "none";
 
-        seeArrow.addEventListener("click", function () {
-          seeArrow.classList.toggle("roted");
-          document.querySelector(".ac_result_cnt").classList.toggle("release");
-        });
-      }
+      //   seeArrow.addEventListener("click", function () {
+      //     seeArrow.classList.toggle("roted");
+      //     document.querySelector(".ac_result_cnt").classList.toggle("release");
+      //   });
+      // }
 
       document.querySelectorAll(".ap_aircraft").forEach((aircraft) => {
         aircraft.addEventListener("click", function () {

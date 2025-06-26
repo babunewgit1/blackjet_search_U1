@@ -653,13 +653,13 @@ p.uniqueid {
 }
 
 .ac_result {
-  /* height: calc(100vh - 165px); */
   background-color: #f1f1f1;
 }
 
 .ac_result_cnt {
   overflow-y: auto;
   padding-right: 15px;
+  height: 570px;
 }
 
 .active {
@@ -751,7 +751,7 @@ p.uniqueid {
 }
 
 .depair_item_wrapper {
-  padding: 10px;
+  padding: 6px 10px;
   cursor: pointer;
 }
 
@@ -838,7 +838,7 @@ p.uniqueid {
 }
 
 .ac_result_active {
-  grid-template-columns: 1fr 1.9fr 0.1fr;
+  grid-template-columns: 1fr 1.5fr 0.15fr;
 }
 
 .active_rightbar .depair_item_wrapper {
@@ -897,14 +897,14 @@ p.dep_hover_heading {
   font-weight: 500;
   line-height: 1.2;
   margin-bottom: 8px;
-  color: rgb(38, 69, 98);
+  color: #fff;
 }
 
 p.dep_hover_para {
   font-size: 14px;
   font-family: Knul, sans-serif;
   line-height: 1.2;
-  color: rgb(70, 96, 121);
+  color: #e1e1e1;
 }
 
 .dep_hover_cnt:after {
@@ -914,7 +914,7 @@ p.dep_hover_para {
   height: 1px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid #fff;
+  border-bottom: 10px solid #000;
   position: absolute;
   left: 50%;
   top: -6px;
@@ -992,7 +992,7 @@ p.dep_hover_para {
   align-items: center;
 }
 
-.ap_aircraft {
+/* .ap_aircraft {
   display: none;
 }
 
@@ -1014,7 +1014,7 @@ p.dep_hover_para {
 
 .release .ap_aircraft {
   display: block !important;
-}
+} */
 
 .ac_result_left {
   min-height: 700px;
@@ -1193,6 +1193,13 @@ p.dep_hover_para {
   color: #fff;
   text-align: center;
   padding: 18px;
+}
+
+.ac_dep_cnt.overflow_more {
+  height: 230px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 15px;
 }
 
 /* ---code for similar aircraft popup end--- */
@@ -1602,6 +1609,32 @@ p.dep_hover_para {
     height: 400px;
     max-height: auto;
   }
+
+  .ac_dep_cnt.overflow_more {
+    height: auto;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .ap_aircraft_tip_text p {
+    min-width: auto;
+    width: 250px;
+    left: inherit;
+    top: -48px;
+    right: -12px;
+    margin-left: 0;
+  }
+
+  .ap_aircraft_tip_text p::after {
+    right: 13px;
+  }
+
+  .ac_result_cnt {
+    overflow-y: visible;
+    padding-right: 0;
+    height: auto;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -1962,6 +1995,32 @@ p.dep_hover_para {
     max-width: auto;
     height: 400px;
   }
+
+  .ac_dep_cnt.overflow_more {
+    height: auto;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .ap_aircraft_tip_text p {
+    min-width: auto;
+    width: 200px;
+    left: inherit;
+    top: -64px;
+    right: -12px;
+    margin-left: 0;
+  }
+
+  .ap_aircraft_tip_text p::after {
+    right: 13px;
+  }
+
+  .ac_result_cnt {
+    overflow-y: visible;
+    padding-right: 0;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -2321,6 +2380,32 @@ p.dep_hover_para {
   .ac_flightItem {
     max-width: auto;
     height: 400px;
+  }
+
+  .ac_dep_cnt.overflow_more {
+    height: auto;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .ap_aircraft_tip_text p {
+    min-width: auto;
+    width: 200px;
+    left: inherit;
+    top: -64px;
+    right: -12px;
+    margin-left: 0;
+  }
+
+  .ap_aircraft_tip_text p::after {
+    right: 13px;
+  }
+
+  .ac_result_cnt {
+    overflow-y: visible;
+    padding-right: 0;
+    height: auto;
   }
 }
 
