@@ -496,9 +496,10 @@ p.uniqueid {
   font-size: 14px;
   color: #5d5d5d;
   border: 1px solid #c0c0c0;
-  padding: 1px 5px;
+  padding: 6px 5px;
   text-align: center;
   margin-top: 8px;
+  line-height: 1;
 }
 
 .ap_aircraft_details_price {
@@ -957,33 +958,52 @@ p.dep_hover_para {
   z-index: 9999;
 }
 
-.loading-spinner {
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  background-color: #0b0b0bd9;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-bar-container {
   text-align: center;
 }
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 10px;
+.loading-bar-bg {
+  width: 400px;
+  max-width: 90vw;
+  height: 32px;
+  border-radius: 36px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 2px solid #fff;
+  padding: 3px;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #fff;
+  border-radius: 36px;
+  transition: width 0.1s linear;
 }
 
-.loading-spinner p {
-  color: #333;
-  font-size: 16px;
-  margin: 0;
+.loading-bar-text {
+  color: #fff;
+  font-size: 25px;
+  line-height: 1;
+  letter-spacing: 4px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px #fff;
 }
 
 .price_block_gen {
@@ -991,30 +1011,6 @@ p.dep_hover_para {
   grid-template-columns: 1fr 138px;
   align-items: center;
 }
-
-/* .ap_aircraft {
-  display: none;
-}
-
-.ac_result_cnt .ap_aircraft:first-child {
-  display: block;
-}
-
-.ac_result_cnt .ap_aircraft:nth-child(2) {
-  display: block;
-}
-
-.ac_result_cnt .ap_aircraft:nth-child(3) {
-  display: block;
-}
-
-.roted img {
-  transform: rotate(180deg);
-}
-
-.release .ap_aircraft {
-  display: block !important;
-} */
 
 .ac_result_left {
   min-height: 700px;
@@ -1244,6 +1240,23 @@ p.dep_hover_para {
   .ap_aircraft_message {
     grid-template-columns: 1fr 99px;
   }
+
+  .ap_aircraft_tip_text p {
+    left: calc(0% - 286px);
+    top: -50px;
+  }
+
+  .ap_aircraft_tip_text p::after {
+    right: 9px;
+  }
+
+  .dep_hover_cnt {
+    width: 18rem;
+  }
+
+  .dep_hover_cnt::after {
+    left: 52%;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1340px) {
@@ -1253,6 +1266,7 @@ p.dep_hover_para {
 
   .ac_result_cnt {
     margin-top: 0.5rem;
+    height: 775px;
   }
 
   .ap_aircraft_details {
@@ -1262,6 +1276,34 @@ p.dep_hover_para {
 
   .apac_details {
     padding: 0;
+  }
+
+  .ac_dep_cnt.overflow_more {
+    height: 335px;
+  }
+
+  .ap_aircraft_tip_text p {
+    min-width: auto;
+    width: 268px;
+  }
+
+  .ap_aircraft_tip_text p::after {
+    right: 7px;
+    bottom: -7px;
+  }
+
+  .ap_aircraft_tip_text p {
+    top: -48px;
+    left: inherit;
+    right: -5px;
+  }
+
+  .dep_hover_cnt::after {
+    left: 73%;
+  }
+
+  .arr_hover_cnt::after {
+    left: 58% !important;
   }
 
   .price_block_gen {
@@ -1284,6 +1326,7 @@ p.dep_hover_para {
   .ap_aircraft_details_price p {
     font-size: 14px;
     margin-top: 0px;
+    margin-left: 8px;
   }
 
   .ap_aircraft_message_left p {
@@ -1307,11 +1350,115 @@ p.dep_hover_para {
   .depair_item_wrapper {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 5px;
+  }
+
+  .depair_item_left p {
+    font-size: 10px;
+  }
+
+  .depair_item_right p {
+    padding: 3px 12px 4px 12px;
+  }
+
+  .depair_item_wrapper {
+    padding: 4px 6px;
   }
 
   .dep_hover_cnt {
     width: 12.75rem;
+  }
+
+  .acls_left_way ul li {
+    padding: 6px 4px;
+    padding-bottom: 7px;
+    font-size: 14px;
+  }
+
+  .acls_left_way ul {
+    padding: 6px;
+  }
+
+  .acls_element {
+    grid-template-columns: 10rem 1fr 2rem;
+    gap: 8px;
+  }
+
+  .acls_left_way_input {
+    gap: 8px;
+  }
+
+  .acls_left_way_place {
+    padding: 6px 8px;
+  }
+
+  .ac_search_popup {
+    top: 86px;
+  }
+
+  .aclspop_input_single .onewaybj,
+  .aclspop_input_round_block .onewaybj {
+    grid-template-columns: calc(100% - 108px) 100px;
+    gap: 8px;
+  }
+
+  .aclspop_input_round_block .onewaybj {
+    grid-template-columns: 1fr;
+  }
+
+  .roundtrip {
+    display: inline-block;
+    width: 182px;
+  }
+
+  .decrement,
+  .bjf_grid {
+    gap: 8px;
+  }
+
+  .aclspop_input_single .acls_main_right {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .aclspop_input_single .acls_main_left,
+  .aclspop_input_round_block .acls_main_left {
+    gap: 8px;
+  }
+
+  .aclspop_input_single .bjf_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .aclspop_input_round_block .bjf_grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .aclspop_input_round_block .acls_main_right {
+    gap: 8px;
+  }
+
+  .depair_item_wrapper {
+    padding: 4px 4px;
+  }
+
+  .depair_item_left h3 {
+    font-size: 15px;
+  }
+
+  .see_more_text {
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .see_more_arrow {
+    width: 0.55rem;
+  }
+
+  .ac_dep_heading {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
   }
 }
 

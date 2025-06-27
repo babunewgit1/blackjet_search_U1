@@ -17,25 +17,46 @@ function handleAirportClick(airportId, storageKey) {
   }
 }
 
-// Function to show loading screen
+// Function to show loading bar
 function showLoading() {
+  // Remove any existing loading screen
+  hideLoading();
+
   const loadingScreen = document.createElement("div");
   loadingScreen.className = "loading-screen";
   loadingScreen.innerHTML = `
-    <div class="loading-spinner">
-      <div class="spinner"></div>
+    <div class="loading-bar-container">
+      <div class="loading-bar-bg">
+        <div class="loading-bar-fill" id="loadingBarFill"></div>
+      </div>
+      <div class="loading-bar-text" id="loadingBarText">0%</div>
       <p>Loading...</p>
     </div>
   `;
   document.body.appendChild(loadingScreen);
+
+  // Animate the loading bar over 102 seconds
+  const duration = 102 * 1000; // 102 seconds in ms
+  const barFill = document.getElementById("loadingBarFill");
+  const barText = document.getElementById("loadingBarText");
+  let startTime = Date.now();
+
+  window.loadingBarInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+    let percent = Math.min((elapsed / duration) * 100, 100);
+    barFill.style.width = percent + "%";
+    barText.textContent = Math.floor(percent) + "%";
+    if (percent >= 100) {
+      clearInterval(window.loadingBarInterval);
+    }
+  }, 100);
 }
 
-// Function to hide loading screen
+// Function to hide loading bar
 function hideLoading() {
   const loadingScreen = document.querySelector(".loading-screen");
-  if (loadingScreen) {
-    loadingScreen.remove();
-  }
+  if (loadingScreen) loadingScreen.remove();
+  if (window.loadingBarInterval) clearInterval(window.loadingBarInterval);
 }
 
 async function pollForAircraft(
@@ -280,18 +301,6 @@ async function makeApiCall() {
       </div>
     `;
       });
-
-      // const seeArrow = document.querySelector(".see_arrow");
-      // const aircraftItems = acResultCnt.querySelectorAll(".ap_aircraft");
-
-      // if (seeArrow) {
-      //   seeArrow.style.display = aircraftItems.length > 3 ? "block" : "none";
-
-      //   seeArrow.addEventListener("click", function () {
-      //     seeArrow.classList.toggle("roted");
-      //     document.querySelector(".ac_result_cnt").classList.toggle("release");
-      //   });
-      // }
 
       document.querySelectorAll(".ap_aircraft").forEach((aircraft) => {
         aircraft.addEventListener("click", function () {
@@ -980,9 +989,7 @@ async function makeApiCall() {
 
 // Call the API when the page loads
 document.addEventListener("DOMContentLoaded", () => {
-  makeApiCall().catch((error) => {
-    console.error("Failed to make API call:", error);
-  });
+  makeApiCall();
 });
 
 // Helper function for reliable date handling
