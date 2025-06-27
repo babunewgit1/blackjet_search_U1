@@ -400,10 +400,6 @@ async function makeApiCall() {
             </div>
           `;
 
-          matchedFleet.forEach((matchedItem) => {
-            console.log(matchedItem._id);
-          });
-
           // Add click event listener to close popup
           document
             .querySelector(".close-popup")
@@ -412,6 +408,15 @@ async function makeApiCall() {
                 "none";
               document.querySelector("body").style.overflow = "visible";
             });
+        });
+      });
+
+      // click event for continue button
+      const continueBtn = document.querySelectorAll(".ap_aircraft_continue a");
+      continueBtn.forEach((cntBtn) => {
+        cntBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          alert("continue btn click");
         });
       });
     }

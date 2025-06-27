@@ -2168,6 +2168,11 @@ p.dep_hover_para {
     padding-right: 0;
     height: auto;
   }
+
+  .ap_aircraft_continue a {
+    font-size: 15px;
+    padding: 8px 25px;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -2553,6 +2558,11 @@ p.dep_hover_para {
     overflow-y: visible;
     padding-right: 0;
     height: auto;
+  }
+
+  .ap_aircraft_continue a {
+    font-size: 15px;
+    padding: 8px 25px;
   }
 }
 
