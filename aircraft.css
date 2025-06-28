@@ -660,7 +660,7 @@ p.uniqueid {
 .ac_result_cnt {
   overflow-y: auto;
   padding-right: 15px;
-  height: 570px;
+  height: 642px;
 }
 
 .active {
@@ -951,59 +951,16 @@ p.dep_hover_para {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  backdrop-filter: blur(10px);
-  background-color: #0b0b0bd9;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-bar-container {
-  text-align: center;
-}
-
-.loading-bar-bg {
-  width: 400px;
-  max-width: 90vw;
-  height: 32px;
-  border-radius: 36px;
-  overflow: hidden;
-  margin-bottom: 12px;
-  border: 2px solid #fff;
-  padding: 3px;
-}
-
-.loading-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: #fff;
-  border-radius: 36px;
-  transition: width 0.1s linear;
-}
-
-.loading-bar-text {
-  color: #fff;
-  font-size: 25px;
-  line-height: 1;
-  letter-spacing: 4px;
-  font-family: Knul, sans-serif;
-  font-weight: 500;
-  margin-bottom: 8px;
-  text-shadow: 0 0 8px #fff;
+.loading-screen img {
+  display: block;
+  width: 300px;
 }
 
 .price_block_gen {
@@ -1198,7 +1155,31 @@ p.dep_hover_para {
   padding-right: 15px;
 }
 
+.acls_element {
+  cursor: pointer;
+}
 /* ---code for similar aircraft popup end--- */
+
+/* -- code for input cross icon start -- */
+.cross_input_icon {
+  position: absolute;
+  right: 5px;
+  top: 36px;
+  cursor: pointer;
+  display: none;
+}
+
+.cross_input_icon img {
+  display: block;
+  width: 25px;
+  filter: brightness(0) saturate(100%) invert(85%) sepia(100%) saturate(0%)
+    hue-rotate(2deg) brightness(106%) contrast(106%);
+}
+
+.mpaxleftmargin {
+  margin-left: 42px;
+}
+/* -- code for input cross icon end -- */
 
 /*
 ====================================
@@ -1256,6 +1237,11 @@ p.dep_hover_para {
 
   .dep_hover_cnt::after {
     left: 52%;
+  }
+
+  .ac_search_popup {
+    height: calc(100vh - 86px);
+    top: 86px;
   }
 }
 
@@ -1572,18 +1558,9 @@ p.dep_hover_para {
     grid-template-columns: 1fr;
   }
 
-  .ac_result_left {
-    order: 2;
-  }
-
   .ac_result_map {
-    order: 1;
     width: 100%;
     height: 400px;
-  }
-
-  .ac_result_right {
-    order: 3;
   }
 
   .ac_result_left {
@@ -1687,6 +1664,7 @@ p.dep_hover_para {
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
+    height: 2.5rem;
   }
 
   .acls_popup input::placehoder {
@@ -1705,6 +1683,7 @@ p.dep_hover_para {
 
   .search-results {
     width: 100%;
+    top: 70px;
   }
 
   .search-results p {
@@ -1781,6 +1760,14 @@ p.dep_hover_para {
     overflow-y: visible;
     padding-right: 0;
     height: auto;
+  }
+
+  .displayx input {
+    background-image: none;
+  }
+
+  .displayx .cross_input_icon {
+    display: block;
   }
 }
 
@@ -1894,18 +1881,9 @@ p.dep_hover_para {
     grid-template-columns: 1fr;
   }
 
-  .ac_result_left {
-    order: 2;
-  }
-
   .ac_result_map {
-    order: 1;
     width: 100%;
     height: 400px;
-  }
-
-  .ac_result_right {
-    order: 3;
   }
 
   .ac_result_left {
@@ -2009,6 +1987,7 @@ p.dep_hover_para {
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
+    height: 2.5rem;
   }
 
   .acls_popup input::placehoder {
@@ -2027,6 +2006,7 @@ p.dep_hover_para {
 
   .search-results {
     width: 100%;
+    top: 70px;
   }
 
   .search-results p {
@@ -2172,6 +2152,14 @@ p.dep_hover_para {
   .ap_aircraft_continue a {
     font-size: 15px;
     padding: 8px 25px;
+  }
+
+  .displayx input {
+    background-image: none;
+  }
+
+  .displayx .cross_input_icon {
+    display: block;
   }
 }
 
@@ -2285,18 +2273,9 @@ p.dep_hover_para {
     grid-template-columns: 1fr;
   }
 
-  .ac_result_left {
-    order: 2;
-  }
-
   .ac_result_map {
-    order: 1;
     width: 100%;
     height: 400px;
-  }
-
-  .ac_result_right {
-    order: 3;
   }
 
   .ac_result_left {
@@ -2400,9 +2379,10 @@ p.dep_hover_para {
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
+    height: 2.5rem;
   }
 
-  .acls_popup input::placehoder {
+  .acls_popup input::placeholder {
     color: #fff;
     opacity: 1;
   }
@@ -2418,6 +2398,7 @@ p.dep_hover_para {
 
   .search-results {
     width: 100%;
+    top: 70px;
   }
 
   .search-results p {
@@ -2563,6 +2544,14 @@ p.dep_hover_para {
   .ap_aircraft_continue a {
     font-size: 15px;
     padding: 8px 25px;
+  }
+
+  .displayx input {
+    background-image: none;
+  }
+
+  .displayx .cross_input_icon {
+    display: block;
   }
 }
 

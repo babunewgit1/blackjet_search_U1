@@ -43,8 +43,8 @@ function handleSearchBoxToggle(buttonSelector) {
     });
   }
 }
-handleSearchBoxToggle(".desktop_setting button");
-handleSearchBoxToggle(".acls_left_way .acls_right button");
+handleSearchBoxToggle(".acl_search_wrapper");
+// handleSearchBoxToggle(".acls_left_way .acls_right button");
 
 // showing data from session storage to search box in aircraft page
 
@@ -271,7 +271,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const getstoredData = JSON.parse(getsessionDate);
   const notFound = document.querySelector(".notfound");
   const searchLink = document.querySelector(".notf_searchbtn a");
-  console.log(notFound);
   if (!getstoredData) {
     notFound.style.display = "flex";
   }
@@ -480,3 +479,32 @@ function controlList(arrowIcon, area) {
 }
 controlList(".deep_more", ".ac_dept_block_cnt");
 controlList(".arrival_more", ".ac_arrive_block_cnt");
+
+// display cross icon in input and remove neccssary text
+const inputFields = document.querySelectorAll(".algolio_input");
+inputFields.forEach((input) => {
+  const parent = input.closest(".eminput_field");
+  const crossIcon = parent.querySelector(".cross_input_icon");
+  const portId = parent.querySelector(".portid");
+  const airportShort = parent.querySelector(".airportshort");
+  const airportCity = parent.querySelector(".airportcity");
+
+  // Show/hide cross icon based on input
+  input.addEventListener("input", () => {
+    if (input.value.trim() !== "") {
+      parent.classList.add("displayx");
+    } else {
+      parent.classList.remove("displayx");
+    }
+  });
+
+  // Clear input and related text when cross icon clicked
+  crossIcon.addEventListener("click", () => {
+    input.value = "";
+    portId.textContent = "";
+    airportShort.textContent = "";
+    airportCity.textContent = "";
+    parent.classList.remove("displayx");
+    input.focus();
+  });
+});

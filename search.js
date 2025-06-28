@@ -26,30 +26,10 @@ function showLoading() {
   loadingScreen.className = "loading-screen";
   loadingScreen.innerHTML = `
     <div class="loading-bar-container">
-      <div class="loading-bar-bg">
-        <div class="loading-bar-fill" id="loadingBarFill"></div>
-      </div>
-      <div class="loading-bar-text" id="loadingBarText">0%</div>
-      <p>Loading...</p>
+      <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/685f88daa5e52ae1e83340e4_loading.gif" alt="" />
     </div>
   `;
   document.body.appendChild(loadingScreen);
-
-  // Animate the loading bar over 102 seconds
-  const duration = 102 * 1000; // 102 seconds in ms
-  const barFill = document.getElementById("loadingBarFill");
-  const barText = document.getElementById("loadingBarText");
-  let startTime = Date.now();
-
-  window.loadingBarInterval = setInterval(() => {
-    const elapsed = Date.now() - startTime;
-    let percent = Math.min((elapsed / duration) * 100, 100);
-    barFill.style.width = percent + "%";
-    barText.textContent = Math.floor(percent) + "%";
-    if (percent >= 100) {
-      clearInterval(window.loadingBarInterval);
-    }
-  }, 100);
 }
 
 // Function to hide loading bar
@@ -110,7 +90,8 @@ async function pollForAircraft(
   if (finalApiResponse.aircraft.length > 0) {
     return finalApiResponse;
   } else {
-    alert("No aircraft data found. Please search again");
+    const notFound = document.querySelector(".notfound");
+    notFound.style.display = "flex";
     return null;
   }
 }

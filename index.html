@@ -6,9 +6,24 @@
     <title>Authentication</title>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <link rel="stylesheet" href="http://127.0.0.1:8080/aircraft.css" />
+
+    <style>
+      input {
+        display: block;
+        background-color: #000;
+        height: 60px;
+        color: #fff;
+        opacity: 1;
+      }
+
+      input::placeholder {
+        opacity: 1;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <section class="acl_search">
+    <!-- <section class="acl_search">
       <div class="container">
         <div class="acl_search_wrapper">
           <div class="acls_element">
@@ -250,6 +265,213 @@
             <audio
               src="https://storage.googleapis.com/assistive-audio/dubbed-audios/1721591524278065.mp3"
             />
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <section class="acls_popup">
+      <div class="container">
+        <div class="acls_popup_wrapper">
+          <div class="acls_popup_header">
+            <div class="acls_popup_header_left">
+              <p class="active" id="cone"><span></span>One Way</p>
+              <p id="ctwo"><span></span>Round Trip</p>
+            </div>
+            <div class="acls_popup_header_right">
+              <span
+                ><img
+                  src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/681d71f9a5b9f75ac29b1ec5_cross1.png"
+                  alt=""
+              /></span>
+            </div>
+          </div>
+          <div class="acls_pop_main">
+            <div
+              data-tab="cone"
+              class="aclspop_input_round aclspop_input_single active"
+            >
+              <div class="onewaybj">
+                <div class="algolio_wrapper change_grid algwrapper">
+                  <form class="algolio_length" autocomplete="off">
+                    <div class="emform onwaygrid bjf_grid">
+                      <div class="acls_main_left">
+                        <div class="eminputblock">
+                          <label class="bjlabel">Departure Airport</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Departure Airport"
+                              class="algolio_input onewayform plan_filter_form_input"
+                              type="text"
+                            />
+                            <div class="cross_input_icon">
+                              <img
+                                src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/686012f5b7640dd05888924b_x-square.png"
+                                alt=""
+                              />
+                            </div>
+                            <p class="portid onewayformid"></p>
+                            <p class="airportshort fromshort"></p>
+                            <p class="airportcity fromcityname"></p>
+                          </div>
+                          <div class="search-results"></div>
+                        </div>
+                        <div class="eminputblock">
+                          <label class="bjlabel">Return Airport</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Return Airport"
+                              class="algolio_input onewayto plan_filter_form_input"
+                              type="text"
+                            />
+                            <div class="cross_input_icon">
+                              <img
+                                src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/686012f5b7640dd05888924b_x-square.png"
+                                alt=""
+                              />
+                            </div>
+                            <p class="portid onewaytoid"></p>
+                            <p class="airportshort toshort"></p>
+                            <p class="airportcity tocityname"></p>
+                          </div>
+                          <div class="search-results"></div>
+                        </div>
+                      </div>
+                      <div class="acls_main_right">
+                        <div class="eminputblock date_block">
+                          <label class="bjlabel">Departure Date</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Departure Date"
+                              class="onewaydate plan_filter_form_input"
+                              type="date"
+                            />
+                          </div>
+                        </div>
+                        <div class="eminputblock">
+                          <div class="eminput_field">
+                            <label class="bjlabel pax_label">PAX</label>
+                            <div class="empax_wrapper">
+                              <div class="empax_minus">-</div>
+                              <input
+                                class="expaxinput plan_filter_form_input onewaypax"
+                                type="text"
+                                value="1"
+                                readonly
+                              />
+                              <div class="empax_plus">+</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="algolio_submit">
+                  <div class="emsubmit">
+                    <span class="onewaysubmit">Search</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-tab="ctwo"
+              class="aclspop_input_round aclspop_input_round_block"
+            >
+              <div class="onewaybj">
+                <div class="algolio_wrapper change_grid">
+                  <form class="algolio_length" autocomplete="off">
+                    <div class="emform twowaygrid bjf_grid">
+                      <div class="acls_main_left">
+                        <div class="eminputblock">
+                          <label class="bjlabel">Departure Airport</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Departure Airport"
+                              class="algolio_input rfrom plan_filter_form_input"
+                              type="text"
+                            />
+                            <div class="cross_input_icon">
+                              <img
+                                src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/686012f5b7640dd05888924b_x-square.png"
+                                alt=""
+                              />
+                            </div>
+                            <p class="portid roundfromid"></p>
+                            <p class="airportshort fromshortround"></p>
+                            <p class="airportcity rfromcityname"></p>
+                          </div>
+                          <div class="search-results"></div>
+                        </div>
+                        <div class="eminputblock">
+                          <label class="bjlabel">Return Airport</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Return Airport"
+                              class="algolio_input rto plan_filter_form_input"
+                              type="text"
+                            />
+                            <div class="cross_input_icon">
+                              <img
+                                src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/686012f5b7640dd05888924b_x-square.png"
+                                alt=""
+                              />
+                            </div>
+                            <p class="portid roundtoid"></p>
+                            <p class="airportshort toshortround"></p>
+                            <p class="airportcity rtocityname"></p>
+                          </div>
+                          <div class="search-results"></div>
+                        </div>
+                      </div>
+                      <div class="acls_main_right">
+                        <div class="eminputblock date_block">
+                          <label class="bjlabel">Departure Date</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Departure Date"
+                              class="rdepdate plan_filter_form_input"
+                              type="date"
+                            />
+                          </div>
+                        </div>
+                        <div class="eminputblock date_block">
+                          <label class="bjlabel">Return Date</label>
+                          <div class="eminput_field">
+                            <input
+                              placeholder="Return Date"
+                              class="rretdate plan_filter_form_input"
+                              type="date"
+                            />
+                          </div>
+                        </div>
+                        <div class="eminputblock">
+                          <div class="eminput_field">
+                            <label class="bjlabel rtwopax mpaxleftmargin"
+                              >PAX</label
+                            >
+                            <div class="empax_wrapper">
+                              <div class="empax_minus">-</div>
+                              <input
+                                class="expaxinput rpax plan_filter_form_input"
+                                type="text"
+                                value="1"
+                                readonly
+                              />
+                              <div class="empax_plus">+</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="algolio_submit">
+                  <div class="emsubmit">
+                    <span class="roundtrip">Search</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
