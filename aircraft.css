@@ -52,6 +52,10 @@
   width: 15px;
 }
 
+.acls_right_way {
+  text-align: right;
+}
+
 .acls_left_way {
   white-space: nowrap;
 }
@@ -387,7 +391,7 @@
   overflow-y: auto;
   position: absolute;
   left: 0;
-  top: 58px;
+  top: 85px;
   z-index: 99;
   width: 365px;
 }
@@ -1366,8 +1370,9 @@ p.dep_hover_para {
   }
 
   .acls_element {
-    grid-template-columns: 10rem 1fr 2rem;
-    gap: 8px;
+    grid-template-columns: 8rem 1fr 1rem;
+    gap: 0;
+    column-gap: 8px;
   }
 
   .acls_left_way_input {
@@ -1445,6 +1450,52 @@ p.dep_hover_para {
   .ac_dep_heading {
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
+  }
+
+  .acls_left_way ul {
+    padding: 6px 3px;
+  }
+
+  .acls_left_way ul li {
+    padding: 6px 2px;
+    padding-bottom: 7px;
+    font-size: 12px;
+  }
+
+  .ffullname,
+  .tfullname {
+    margin-left: 4px;
+    top: 8px;
+    font-size: 12px;
+  }
+
+  .fshortname {
+    font-size: 12px;
+    margin-left: 2px;
+  }
+
+  .tshortname {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .tofromdate,
+  .totodate {
+    font-size: 12px;
+  }
+
+  .acls_left_person img {
+    width: 12px;
+    margin-right: 4px;
+  }
+
+  .acls_left_person span {
+    font-size: 12px;
+  }
+
+  .search-results {
+    top: 85px;
   }
 }
 
@@ -1768,6 +1819,23 @@ p.dep_hover_para {
 
   .displayx .cross_input_icon {
     display: block;
+  }
+
+  .twoway_input {
+    grid-template-columns: 80% 20% !important;
+    gap: 0;
+    row-gap: 0px;
+    grid-row-gap: 10px;
+  }
+
+  .acls_left_date {
+    gap: 16px;
+    grid-column: 1;
+  }
+
+  .acls_left_person {
+    grid-column: 2;
+    margin-left: 8px;
   }
 }
 
@@ -2161,6 +2229,22 @@ p.dep_hover_para {
   .displayx .cross_input_icon {
     display: block;
   }
+
+  .twoway_input {
+    grid-template-columns: 80% 20% !important;
+    gap: 0;
+    grid-row-gap: 10px;
+  }
+
+  .acls_left_date {
+    gap: 6px;
+    grid-column: 1;
+  }
+
+  .acls_left_person {
+    grid-column: 2;
+    margin-left: 8px;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -2552,6 +2636,22 @@ p.dep_hover_para {
 
   .displayx .cross_input_icon {
     display: block;
+  }
+
+  .twoway_input {
+    grid-template-columns: 80% 20% !important;
+    gap: 0;
+    grid-row-gap: 10px;
+  }
+
+  .acls_left_date {
+    gap: 6px;
+    grid-column: 1;
+  }
+
+  .acls_left_person {
+    grid-column: 2;
+    margin-left: 8px;
   }
 }
 

@@ -21,6 +21,7 @@ function handleAirportClick(airportId, storageKey) {
 function showLoading() {
   // Remove any existing loading screen
   hideLoading();
+  document.querySelector("body").style.overflow = "hidden";
 
   const loadingScreen = document.createElement("div");
   loadingScreen.className = "loading-screen";
@@ -37,6 +38,7 @@ function hideLoading() {
   const loadingScreen = document.querySelector(".loading-screen");
   if (loadingScreen) loadingScreen.remove();
   if (window.loadingBarInterval) clearInterval(window.loadingBarInterval);
+  document.querySelector("body").style.overflow = "visible";
 }
 
 async function pollForAircraft(
