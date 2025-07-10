@@ -1497,6 +1497,10 @@ p.dep_hover_para {
   .search-results {
     top: 85px;
   }
+
+  .otodate {
+    font-size: 12px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -1530,7 +1534,14 @@ p.dep_hover_para {
   }
 
   .oneway_input {
-    grid-template-columns: 2fr 1fr 1fr 1fr !important;
+    /* grid-template-columns: 2fr 1fr 1fr 1fr !important; */
+    grid-template-columns: 1.5fr 0.5fr 5.3125rem !important;
+  }
+
+  .oneway_input .acls_left_way_place,
+  .oneway_input .acls_left_date,
+  .oneway_input .acls_left_person {
+    grid-column: initial;
   }
 
   .acls_left_way_place {
