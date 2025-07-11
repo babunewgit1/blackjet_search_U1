@@ -1,0 +1,40 @@
+/* code for map - start */
+#map {
+  height: 700px;
+  width: 100%;
+}
+
+.airport-marker {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  font-size: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.airport-info {
+  background-color: #333a42;
+  padding: 5px 8px;
+  border-radius: 3px 0 0 3px;
+  display: flex;
+  align-items: center;
+}
+
+.airport-info .plane-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  transform: rotate(270deg);
+  fill: white;
+}
+.airport-info.destination .plane-icon {
+  transform: rotate(90deg);
+}
+
+.airport-code {
+  background-color: #000000;
+  padding: 5px 8px;
+  border-radius: 0 3px 3px 0;
+  font-weight: bold;
+}

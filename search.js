@@ -205,6 +205,27 @@ async function makeApiCall() {
     // Get flightrequest from first API response
     const flightRequestId = apiResponse.flightrequest;
     console.log("Flight Request ID from 1st API:", flightRequestId);
+
+    // Save flightRequestId in sessionStorage as an array
+    let storedFlightIds = JSON.parse(
+      sessionStorage.getItem("flightRequestId") || "[]"
+    );
+    if (flightRequestId && !storedFlightIds.includes(flightRequestId)) {
+      storedFlightIds.push(flightRequestId);
+      sessionStorage.setItem(
+        "flightRequestId",
+        JSON.stringify(storedFlightIds)
+      );
+
+      // Check if user is logged in and send the data
+      const userEmail =
+        typeof Cookies !== "undefined" ? Cookies.get("userEmail") : null;
+      const authToken =
+        typeof Cookies !== "undefined" ? Cookies.get("authToken") : null;
+      if (userEmail && authToken) {
+        sendFlightRequestIdsIfLoggedIn();
+      }
+    }
     if (!flightRequestId) {
       alert("No flightrequest ID returned from the first API call.");
       hideLoading();
@@ -246,7 +267,9 @@ async function makeApiCall() {
     if (acResultCnt && apiAircraft) {
       apiAircraft.forEach((aircraft, index) => {
         acResultCnt.innerHTML += `
-      <div class="ap_aircraft" data-index="${index}">
+      <div class="ap_aircraft" data-index="${index}" aircraft-id = "${
+          aircraft._id
+        }">
         <div class="ap_aircraft_details">  
           <div class="apac_img">
             <img src="${aircraft.aircraft_image_image}" alt="" />
@@ -399,7 +422,41 @@ async function makeApiCall() {
       continueBtn.forEach((cntBtn) => {
         cntBtn.addEventListener("click", function (e) {
           e.stopPropagation();
-          alert("continue btn click");
+
+          // Save flightRequestId and aircraft id in sessionStorage
+          if (typeof flightRequestId !== "undefined") {
+            sessionStorage.setItem("frequestid", flightRequestId);
+          }
+          const aircraftDiv = this.closest(".ap_aircraft");
+          if (aircraftDiv) {
+            const aircraftId = aircraftDiv.getAttribute("aircraft-id");
+            if (aircraftId) {
+              sessionStorage.setItem("aircraftid", aircraftId);
+            }
+          }
+
+          // Check if user is logged in using cookies
+          if (
+            typeof Cookies !== "undefined" &&
+            Cookies.get("userEmail") &&
+            Cookies.get("authToken")
+          ) {
+            // User is logged in, redirect to homepage
+            window.location.href = "/checkout";
+          } else {
+            const authPopUpWrapper = document.querySelector(".auth-popup");
+            const authBlockPopup = document.querySelector(".auth_block_popup");
+            const authForget = document.querySelector(".auth_forget");
+
+            authPopUpWrapper.classList.add("active_popup");
+            authBlockPopup.style.display = "block";
+            authForget.style.display = "none";
+            document.querySelector("#signin").classList.add("active_form");
+            document.querySelector("#signup").classList.remove("active_form");
+            document.querySelector("[data='signin']").style.display = "block";
+            document.querySelector("[data='signup']").style.display = "none";
+            sessionStorage.setItem("redirectAfterLogin", "true");
+          }
         });
       });
     }

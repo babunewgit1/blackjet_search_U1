@@ -1,0 +1,97 @@
+{
+  "status": "success",
+  "response": {
+    "flightlegs": [
+      {
+        "mobile_app_from_airport_iata_code_text": "USQ",
+        "mobile_app_from_airport_name_short_text": "Usak",
+        "mobile_app_to_airport_icao_code_text": "KSPH",
+        "Created Date": 1752254153970,
+        "total_distance__nautical_m__number": 1234,
+        "_id": "1752254153963x229652069624468380",
+        "date_date": 1752256800000,
+        "Modified Date": 1752254154202,
+        "mobile_app_to_latitude_number": 32.9833333333,
+        "mobile_app_from_longitude_number": 29.4716666667,
+        "mobile_app_to_airport_name_short_text": "Springhill",
+        "mobile_app_to_longitude_number": -93.41,
+        "total_distance__statute_m__number": 6277.6134887036,
+        "date_as_text1_text": "2025-07-12",
+        "Created By": "non_authenticated_user_operators-dashboard_live",
+        "__flight_departure_range___option_datepickerranges": "Exact",
+        "from_custom_airport": "1498590229233x449956897646188740",
+        "reviewed_by_passenger__boolean": false,
+        "pax1_number": 6,
+        "mobile_app_from_city_text_text": "Usak",
+        "mobile_app_to_city_text_text": "Springhill",
+        "mobile_app_from_airport_icao_code_text": "LTBO",
+        "temp__draft__boolean": true,
+        "app_departure_time_updated_boolean": false,
+        "alternate_arrival_airports_list_custom_airport": [
+          "1498583093130x971314677270129300",
+          "1498583399195x278904616599902500",
+          "1498584141453x403774410253390660",
+          "1498584789441x264278581365942940"
+        ],
+        "flight_request_unique_id_text": "1752254154124x222150179573330500",
+        "mobile_app_from_latitude_number": 38.6816666667,
+        "available_departure_dates_list_date": [1752256800000],
+        "departure_dates_as_texts_list_text": ["2025-07-12"],
+        "alternate_departure_airports_list_custom_airport": [
+          "1498590229233x449956897646188740"
+        ],
+        "mobile_app_to_airport_faa_code_text": "SPH",
+        "to_custom_airport": "1498583093130x971314677270129300",
+        "reviewed_by_pilot__boolean": false
+      },
+      {
+        "mobile_app_to_city_text_text": "Usak",
+        "date_date": 1753466400000,
+        "mobile_app_to_latitude_number": 38.6816666667,
+        "total_distance__nautical_m__number": 1234,
+        "mobile_app_from_airport_faa_code_text": "SPH",
+        "from_custom_airport": "1498583093130x971314677270129300",
+        "alternate_departure_airports_list_custom_airport": [
+          "1498583093130x971314677270129300",
+          "1498583399195x278904616599902500",
+          "1498584141453x403774410253390660",
+          "1498584789441x264278581365942940"
+        ],
+        "mobile_app_from_airport_icao_code_text": "KSPH",
+        "mobile_app_from_longitude_number": -93.41,
+        "mobile_app_to_airport_icao_code_text": "LTBO",
+        "reviewed_by_pilot__boolean": false,
+        "reviewed_by_passenger__boolean": false,
+        "date_as_text1_text": "2025-07-26",
+        "mobile_app_from_latitude_number": 32.9833333333,
+        "temp__draft__boolean": true,
+        "_id": "1752254154022x739337130416224300",
+        "pax1_number": 6,
+        "alternate_arrival_airports_list_custom_airport": [
+          "1498590229233x449956897646188740"
+        ],
+        "total_distance__statute_m__number": 6277.6134887036,
+        "app_departure_time_updated_boolean": false,
+        "__flight_departure_range___option_datepickerranges": "Exact",
+        "flight_request_unique_id_text": "1752254154124x222150179573330500",
+        "mobile_app_to_airport_iata_code_text": "USQ",
+        "mobile_app_to_airport_name_short_text": "Usak",
+        "departure_dates_as_texts_list_text": ["2025-07-26"],
+        "to_custom_airport": "1498590229233x449956897646188740",
+        "Created Date": 1752254154027,
+        "mobile_app_to_longitude_number": 29.4716666667,
+        "mobile_app_from_airport_name_short_text": "Springhill",
+        "Created By": "non_authenticated_user_operators-dashboard_live",
+        "available_departure_dates_list_date": [1753466400000],
+        "Modified Date": 1752254154212,
+        "mobile_app_from_city_text_text": "Springhill"
+      }
+    ],
+    "category": "Turbo Prop",
+    "tax": 80817.425,
+    "total": 80817.425,
+    "aircraft_image": "//29101afcd41198dafcdd8b88cbac692a.cdn.bubble.io/f1748814198073x299872047020829400/Bombardier-T-8.png",
+    "aircraft_max_pax": 6,
+    "checkout_aircraft_message": "Executive turboprops offer a unique combination of versatility, performance, and cost efficiency, making them ideal for both business and leisure travel. With the ability to access smaller and remote airfields, these aircraft can take you to destinations that commercial airlines simply can't reach.\n"
+  }
+}

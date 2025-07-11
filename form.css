@@ -11,6 +11,10 @@
   z-index: 9999;
 }
 
+.toast-container {
+  z-index: 10000 !important;
+}
+
 .auth_wrapper {
   width: 680px;
   background-color: #fff;

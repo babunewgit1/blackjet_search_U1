@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const authToken = Cookies.get("authToken");
   if (userEmail && authToken) {
     updateUIForLoggedInUser(userEmail);
+    sendFlightRequestIdsIfLoggedIn();
   }
 
   // Signup Form Handler
@@ -189,6 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Update UI for logged in state
           updateUIForLoggedInUser(email);
+          sendFlightRequestIdsIfLoggedIn();
+
+          // Redirect to homepage if flagged
+          if (sessionStorage.getItem("redirectAfterLogin") === "true") {
+            sessionStorage.removeItem("redirectAfterLogin");
+            window.location.href = "/checkout";
+          }
 
           // Update account details heading
           const accountNameSpan = document.querySelector(
@@ -258,6 +266,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Update UI for logged in state
           updateUIForLoggedInUser(email);
+          sendFlightRequestIdsIfLoggedIn();
+
+          // Redirect to homepage if flagged
+          if (sessionStorage.getItem("redirectAfterLogin") === "true") {
+            sessionStorage.removeItem("redirectAfterLogin");
+            window.location.href = "/checkout";
+          }
 
           // Update account details heading
           const accountNameSpan = document.querySelector(
@@ -401,3 +416,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+async function sendFlightRequestIdsIfLoggedIn() {
+  const userEmail = Cookies.get("userEmail");
+  const authToken = Cookies.get("authToken");
+  const isLoggedIn = userEmail && authToken;
+  const storedData = sessionStorage.getItem("flightRequestId");
+  const flightRequestIds = JSON.parse(storedData || "[]");
+
+  if (isLoggedIn && flightRequestIds.length > 0) {
+    try {
+      const response = await fetch(
+        "https://operators-dashboard.bubbleapps.io/api/1.1/wf/save_session_requests",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify({ flightrequestids: flightRequestIds }),
+        }
+      );
+
+      if (response.ok) {
+        sessionStorage.removeItem("flightRequestId");
+      } else {
+        console.error(
+          "Failed to send to backend:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (err) {
+      console.error("Error sending to backend:", err);
+    }
+  }
+}
+window.sendFlightRequestIdsIfLoggedIn = sendFlightRequestIdsIfLoggedIn;
