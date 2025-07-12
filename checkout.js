@@ -1,5 +1,3 @@
-console.log("object");
-
 // Function to format date for HTML date input (YYYY-MM-DD format)
 function formatDateForInput(dateString) {
   if (!dateString) return "";
@@ -38,6 +36,76 @@ function formatDateToShortText(dateString) {
   });
 }
 
+// Function to generate 24-hour time slots in 30-minute increments
+function generateTimeSlots() {
+  const slots = [];
+  for (let h = 0; h < 24; h++) {
+    for (let m = 0; m < 60; m += 30) {
+      const hour12 = h % 12 === 0 ? 12 : h % 12;
+      const hourStr = String(hour12).padStart(2, "0");
+      const ampm = h < 12 ? "AM" : "PM";
+      const min = m === 0 ? "00" : "30";
+      slots.push(`${hourStr}:${min} ${ampm}`);
+    }
+  }
+  return slots;
+}
+
+// Function to set up the custom time dropdown for all .departure-time-input fields
+function setupTimeDropdown() {
+  const inputs = document.querySelectorAll(".departure-time-input");
+  const dropdowns = document.querySelectorAll(".time-dropdown");
+  const slots = generateTimeSlots();
+
+  inputs.forEach((input, idx) => {
+    const dropdown = dropdowns[idx];
+    if (!dropdown) return;
+
+    // Build the dropdown
+    dropdown.innerHTML =
+      `<div class="time-reset">RESET</div>` +
+      slots.map((time) => `<div class="time-slot">${time}</div>`).join("");
+
+    // Show dropdown on input focus/click
+    input.addEventListener("focus", () => (dropdown.style.display = "block"));
+    input.addEventListener("click", () => (dropdown.style.display = "block"));
+
+    // Hide dropdown on outside click
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target) && e.target !== input) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    // Handle time selection
+    dropdown.addEventListener("click", (e) => {
+      if (e.target.classList.contains("time-slot")) {
+        input.value = e.target.textContent;
+        dropdown.style.display = "none";
+        // Always update the .start_time element in the corresponding .tripbox
+        const legIndex = input.getAttribute("data-leg-index");
+        const tripboxTime = document.querySelector(
+          `.tripbox[data-leg-index="${legIndex}"] .start_time`
+        );
+        if (tripboxTime) {
+          tripboxTime.textContent = e.target.textContent;
+        }
+      }
+      if (e.target.classList.contains("time-reset")) {
+        input.value = "";
+        const legIndex = input.getAttribute("data-leg-index");
+        const tripboxTime = document.querySelector(
+          `.tripbox[data-leg-index="${legIndex}"] .start_time`
+        );
+        if (tripboxTime) {
+          tripboxTime.textContent = "";
+        }
+        dropdown.style.display = "none";
+      }
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
   // Use .loading_check div for loading state
   const loadingDiv = document.querySelector(".loading_check");
@@ -67,7 +135,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       );
       const data = await response.json();
       const dataResponse = data.response;
-      console.log("Continue Button API Response:", data.response);
 
       //! creating map start
       const fromAirport = {
@@ -382,13 +449,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             <div class="trip_one_date">
               <div class="ch_date">
                 <label>Flight Date</label>
-                <input type="date" value="${formatDateForInput(
+                <input type="date" data-leg-index="0" value="${formatDateForInput(
                   dataResponse.flightlegs[0].date_as_text1_text
                 )}" />
               </div>
               <div class="ch_date ch_time">
                 <label>Departure Time</label>
-                <input type="text" class="departure-time-input" readonly placeholder="Select time" />
+                <input type="text" class="departure-time-input" data-leg-index="0" readonly placeholder="Select time" />
                 <div class="time-dropdown" style="display:none;"></div>
               </div>
             </div>
@@ -401,24 +468,24 @@ document.addEventListener("DOMContentLoaded", async function () {
             <div class="trip_one_date">
               <div class="ch_date">
                 <label>Outbound Flight</label>
-                <input type="date" value="${formatDateForInput(
+                <input type="date" data-leg-index="0" value="${formatDateForInput(
                   dataResponse.flightlegs[0].date_as_text1_text
                 )}" />
               </div>
               <div class="ch_date ch_time">
                 <label>Departure Time</label>
-                <input type="text" class="departure-time-input" readonly placeholder="Select time" />
+                <input type="text" class="departure-time-input" data-leg-index="0" readonly placeholder="Select time" />
                 <div class="time-dropdown" style="display:none;"></div>
               </div>
               <div class="ch_date">
                 <label>Return Flight</label>
-                <input type="date" value="${formatDateForInput(
+                <input type="date" data-leg-index="1" value="${formatDateForInput(
                   dataResponse.flightlegs[1].date_as_text1_text
                 )}" />
               </div>
               <div class="ch_date ch_time">
                 <label>Departure Time</label>
-                <input type="text" class="departure-time-input" readonly placeholder="Select time" />
+                <input type="text" class="departure-time-input" data-leg-index="1" readonly placeholder="Select time" />
                 <div class="time-dropdown" style="display:none;"></div>
               </div>
             </div>
@@ -431,9 +498,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       //? code for let side trip details
       const tripRightDetails = document.querySelector(".ch_trip_right");
       const checkoutTrip = dataResponse.flightlegs;
-      checkoutTrip.forEach((trip) => {
+      tripRightDetails.innerHTML = "";
+      checkoutTrip.forEach((trip, idx) => {
         tripRightDetails.innerHTML += `
-          <div class="tripbox">
+          <div class="tripbox" data-leg-index="${idx}">
               <div class="tripheading">
                 <p><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/681b3998bb0e44c63127549a_cal.png" alt="calender image" /> ${formatDateToShortText(
                   trip.date_as_text1_text
@@ -448,7 +516,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     trip.mobile_app_from_airport_iata_code_text ||
                     trip.mobile_app_from_airport_faa_code_text
                   }</h3>
-                  <p></p>
+                  <p class="start_time"></p>
                 </div>
                 <div class="trip_place_icon"></div>
                 <div class="trip_place_left trip_place_right">
@@ -457,7 +525,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     trip.mobile_app_to_airport_iata_code_text ||
                     trip.mobile_app_to_airport_faa_code_text
                   }</h3>
-                  <p></p>
+                  <p class="end_time"></p>
               </div>
             </div>
             <div class="trip_cal">
@@ -502,67 +570,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         `;
       });
 
-      // --- Custom Time Slot Dropdown for Departure Time ---
-      function generateTimeSlots() {
-        const slots = [];
-        for (let h = 0; h < 24; h++) {
-          for (let m = 0; m < 60; m += 30) {
-            const hour12 = h % 12 === 0 ? 12 : h % 12;
-            const hourStr = String(hour12).padStart(2, "0");
-            const ampm = h < 12 ? "AM" : "PM";
-            const min = m === 0 ? "00" : "30";
-            slots.push(`${hourStr}:${min} ${ampm}`);
-          }
-        }
-        return slots;
-      }
-
-      function setupTimeDropdown() {
-        const inputs = document.querySelectorAll(".departure-time-input");
-        const dropdowns = document.querySelectorAll(".time-dropdown");
-        const slots = generateTimeSlots();
-
-        inputs.forEach((input, idx) => {
-          const dropdown = dropdowns[idx];
-          if (!dropdown) return;
-
-          // Build the dropdown
-          dropdown.innerHTML =
-            `<div class="time-reset">RESET</div>` +
-            slots
-              .map((time) => `<div class="time-slot">${time}</div>`)
-              .join("");
-
-          // Show dropdown on input focus/click
-          input.addEventListener(
-            "focus",
-            () => (dropdown.style.display = "block")
-          );
-          input.addEventListener(
-            "click",
-            () => (dropdown.style.display = "block")
-          );
-
-          // Hide dropdown on outside click
-          document.addEventListener("click", (e) => {
-            if (!dropdown.contains(e.target) && e.target !== input) {
-              dropdown.style.display = "none";
-            }
-          });
-
-          // Handle time selection
-          dropdown.addEventListener("click", (e) => {
-            if (e.target.classList.contains("time-slot")) {
-              input.value = e.target.textContent;
-              dropdown.style.display = "none";
-            }
-            if (e.target.classList.contains("time-reset")) {
-              input.value = "";
-              dropdown.style.display = "none";
+      // Add event listeners to date inputs to update .tripheading date in .tripbox
+      document
+        .querySelectorAll('input[type="date"][data-leg-index]')
+        .forEach((input) => {
+          input.addEventListener("change", function () {
+            const legIndex = this.getAttribute("data-leg-index");
+            const newDate = this.value;
+            const formatted = formatDateToShortText(newDate);
+            const tripboxDate = document.querySelector(
+              `.tripbox[data-leg-index="${legIndex}"] .tripheading p`
+            );
+            if (tripboxDate) {
+              tripboxDate.innerHTML = `<img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/681b3998bb0e44c63127549a_cal.png" alt="calender image" /> ${formatted}`;
             }
           });
         });
-      }
+      // Re-initialize the time pickers for all .departure-time-input fields
       setupTimeDropdown();
       // --- End Custom Time Slot Dropdown ---
     } catch (error) {
