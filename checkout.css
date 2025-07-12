@@ -38,3 +38,164 @@
   border-radius: 0 3px 3px 0;
   font-weight: bold;
 }
+
+.ch_time {
+  position: relative;
+}
+.departure-time-input {
+  width: 100%;
+  cursor: pointer;
+}
+.time-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 10;
+}
+.time-slot,
+.time-reset {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.time-slot:hover,
+.time-reset:hover {
+  background: #eee;
+}
+.time-reset {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  z-index: 2;
+}
+
+.ch_trip_wrapper {
+  max-width: 1270px;
+  margin: auto;
+  border: 1px solid #c4c4c4;
+  padding: 40px;
+  box-shadow: 0px 0px 5px 0px #c4c4c4;
+}
+
+.ch_trip_cnt {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+}
+
+.ch_trip_left {
+  padding-right: 100px;
+}
+
+.trip_details_top {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  column-gap: 30px;
+}
+
+.tripimg img {
+  display: block;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid #c4c4c4;
+}
+
+.trip_pecenger {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 5px;
+  border: 1px solid #c4c4c4;
+  padding: 4px 18px;
+  font-size: 17px;
+  color: #5d5d5d;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.trip_pecenger img {
+  opacity: 0.7;
+  display: inline-block;
+  width: 14px;
+}
+.trip_message {
+  font-size: 15px;
+  color: #353535;
+  line-height: 1.4;
+}
+
+.ch_trip_det_cnt {
+  margin-top: 25px;
+}
+
+.trip_details_bottom {
+  margin-top: 35px;
+  background-color: #f1f1f1;
+  padding: 40px;
+}
+
+.trip_details_bottom h4 {
+  font-size: 18px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.trip_date_oneway p {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 14px 0px;
+  font-weight: bold;
+}
+
+.trip_one_date {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 16px;
+}
+
+.ch_date label {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Knul, sans-serif;
+  margin-bottom: 10px;
+}
+
+.ch_date input[type="date"] {
+  width: 100%;
+  height: 54px;
+  background-color: transparent;
+  border: 1px solid #c4c4c4;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  outline: none;
+  color: #000;
+}
+
+.ch_date input[type="date"]::placeholder {
+  color: #000;
+}
+
+.ch_time input {
+  width: 100%;
+  height: 54px;
+  background-color: transparent;
+  border: 1px solid #c4c4c4;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  outline: none;
+  color: #000;
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68722f3d340c05378e74674f_BlackJet-2.png");
+  background-repeat: no-repeat;
+  background-position: top 16px right 10px;
+  background-size: 20px;
+}

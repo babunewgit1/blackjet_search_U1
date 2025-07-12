@@ -760,7 +760,6 @@ async function makeApiCall() {
         }, 350); // Slightly longer delay to account for sidebar animation
       });
     }
-
     //! creating map end
 
     //? Code for right side content - start
