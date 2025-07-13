@@ -199,3 +199,195 @@
   background-position: top 16px right 10px;
   background-size: 20px;
 }
+
+.ch_trip_right_cnt {
+  background-color: #5d5d5d;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.trip_total_cal {
+  background-color: #000000;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.tripbox {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.tripheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tripheading p {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.tripheading p img {
+  display: inline-block;
+  width: 18px;
+}
+
+.tripheading > img {
+  display: inline-block;
+  width: 110px;
+}
+
+.trip_place {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time_calcu {
+  margin: 30px 0px;
+}
+
+.trip_place_left h3 {
+  min-width: 105px;
+  background-color: #848484;
+  margin: 0;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  padding: 12px 10px;
+}
+
+.trip_place_icon {
+  width: 36px;
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6873651956ec069344fda1a0_arrow_left.png");
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: center center;
+}
+
+.tripbox:nth-of-type(2) .trip_place_icon {
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68736519c41a80753e67d02a_arrow_right.png");
+}
+
+.trip_place_left p {
+  font-size: 18px;
+  color: #fff;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.trip_cal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip_cal_name {
+  font-size: 17px;
+  color: #ddd;
+}
+
+.trip_cal_number {
+  font-size: 17px;
+  color: #fff;
+}
+
+.trip_cal_text {
+  position: relative;
+}
+
+.trip_cal_text:nth-child(2):after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  left: -25px;
+  top: 0;
+  background-color: #c4c4c4;
+}
+
+.trip_cal_text:nth-child(2):before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: -25px;
+  top: 0;
+  background-color: #c4c4c4;
+}
+
+.tripbox[data-leg-index="1"] {
+  border-top: 1px solid #c4c4c4;
+}
+
+.trip_total_tax {
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.trip_total_tax p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  margin: 2px 0px;
+}
+
+.trip_total_number {
+  color: #fff;
+  border-top: 1px solid #454545;
+  padding-top: 12px;
+}
+
+.trip_total_number p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+}
+
+.time_flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time_flex p {
+  font-size: 17px;
+  color: #fff;
+  margin-top: 8px;
+  text-align: center;
+  min-width: 105px;
+}
+
+.checkbtn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  gap: 8px;
+  padding: 12px 12px;
+  margin-top: 35px;
+  transition: all 0.2s ease;
+}
+
+.checkbtn:hover {
+  opacity: 0.7;
+}
+
+.mobile_checkbtn {
+  display: none;
+}
