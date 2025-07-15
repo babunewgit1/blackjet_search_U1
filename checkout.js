@@ -204,13 +204,19 @@ function setupTimeDropdown() {
             let durationHours = 4;
             let durationMinutes = 30;
 
-            if (tripData && tripData.duration_time) {
-              // Parse duration_time if it exists (assuming format like "4h 30m" or "4:30")
+            // Use aviapages_light_jet_estimated_flight_time_text instead of duration_time
+            if (
+              tripData &&
+              tripData.aviapages_light_jet_estimated_flight_time_text
+            ) {
+              // Parse aviapages_light_jet_estimated_flight_time_text (format like "14 hr 15 min", "4h 30m", "4:30", etc)
               const durationMatch =
-                tripData.duration_time.match(/(\d+)h?\s*(\d+)?m?/);
+                tripData.aviapages_light_jet_estimated_flight_time_text.match(
+                  /(\d+)\s*(?:h|hr)?[^\d]*(\d+)?\s*(?:m|min)?/i
+                );
               if (durationMatch) {
-                durationHours = parseInt(durationMatch[1]) || 4;
-                durationMinutes = parseInt(durationMatch[2]) || 30;
+                durationHours = parseInt(durationMatch[1]) || 0;
+                durationMinutes = parseInt(durationMatch[2]) || 0;
               }
             }
 
@@ -285,6 +291,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       );
       const data = await response.json();
       const dataResponse = data.response;
+      console.log(dataResponse);
 
       // Store trip data globally for access in time calculations
       window.tripData = dataResponse.flightlegs;
@@ -612,6 +619,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <div class="time-dropdown" style="display:none;"></div>
               </div>
             </div>
+            <div class="checkout_btn">
+              <button class="checkbtn">CheckOut <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="arrow_icon" /></button>
+            </div>
           </div>
         `;
       } else if (dataResponse.flightlegs.length === 2) {
@@ -691,7 +701,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             <div class="trip_cal">
               <div class="trip_cal_text">
                 <p class="trip_cal_name">Duration:</p>
-                <p class="trip_cal_number">4h 35m</p>
+                <p class="trip_cal_number">${
+                  trip.aviapages_light_jet_estimated_flight_time_text
+                }</p>
               </div>
               <div class="trip_cal_text">
                 <p class="trip_cal_name">Nautical Miles:</p>
@@ -735,7 +747,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         </div>
         
         <div class="checkout_btn">
-          <button class="checkbtn">CheckOut <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="arrow_icon" /></button>
+          <button class="checkbtn mobile_checkbtn">CheckOut <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/680d2633fe670f2024b6738a_arr.png" alt="arrow_icon" /></button>
         </div>
       `;
 
