@@ -751,6 +751,51 @@ document.addEventListener("DOMContentLoaded", async function () {
         </div>
       `;
 
+      // add few for details data when user will click in continue button
+      const cntBtn = document.querySelector(".checkbtn");
+      const detailsImg = document.querySelector(".che_trip_img");
+      const confirmationText = document.querySelector(".confiramtion_text");
+
+      cntBtn.addEventListener("click", function () {
+        const checkDateValue = document.querySelector(
+          '.ch_date input[type="date"]'
+        ).value;
+        const checkTimeValue = document.querySelector(
+          ".departure-time-input"
+        ).value;
+
+        if (checkDateValue && checkTimeValue) {
+          detailsImg.innerHTML = "";
+          confirmationText.innerHTML = "";
+
+          detailsImg.innerHTML = `
+          <div class="trip_img_ch">
+            <div class="trip_img_ch_left">
+              <img src="${dataResponse.aircraft_image}" alt="aircraft_img" />
+            </div>
+            <div class="trip_img_ch_right">
+              <h3>${dataResponse.category}</h3>
+              <p><img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123a3a00245af158cbc3f7_user.png" alt="usericon" /> <span>UP TO ${dataResponse.aircraft_max_pax}</span></p>
+            </div>
+          </div>
+        `;
+
+          confirmationText.innerHTML = `
+            <div class="confimationtext_wrapper">
+              <div class="confi_clock">
+                <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68722f3d340c05378e74674f_BlackJet-2.png" alt="clock_icon" />
+              </div>
+              <div class="confi_text">
+                <h3>48 Hour Confirmation</h3>
+                <p>Your booking will be confirmed within 48 hours.</p>
+              </div>
+            </div>
+          `;
+        } else {
+          alert("Please submit date and time properly");
+        }
+      });
+
       // Add event listeners to date inputs to update .tripheading date in .tripbox
       document
         .querySelectorAll('input[type="date"][data-leg-index]')

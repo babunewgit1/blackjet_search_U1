@@ -1,5 +1,12 @@
 //form hide and none
 document.addEventListener("DOMContentLoaded", function () {
+  // reset form when dom load successfully.
+  const getAllForm = document.querySelectorAll(".signinform form");
+  getAllForm.forEach((formItem) => {
+    formItem.reset();
+  });
+  document.querySelector(".auth_forget form").reset();
+
   // code for auth popup show
   const loginBtn = document.querySelector("#login");
   const authPopUpWrapper = document.querySelector(".auth-popup");
@@ -128,9 +135,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Check initial login state
   const userEmail = Cookies.get("userEmail");
   const authToken = Cookies.get("authToken");
+  const userFirstName = Cookies.get("userFirstName");
+  const userLastName = Cookies.get("userLastName");
   if (userEmail && authToken) {
     updateUIForLoggedInUser(userEmail);
     sendFlightRequestIdsIfLoggedIn();
+    // Set account name from cookies if available
+    if (userFirstName && userLastName) {
+      const accountNameSpan = document.querySelector(".account_det_h3 span");
+      if (accountNameSpan) {
+        accountNameSpan.textContent = `${userFirstName} ${userLastName}`;
+      }
+    }
   }
 
   // Signup Form Handler
@@ -148,6 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const confirmPassword = document.getElementById(
         "signup_confirmpassword"
       ).value;
+
+      const title = document
+        .querySelector(".iti__selected-flag")
+        .getAttribute("title");
+      const plusWithNumber = title.match(/\+\d+/)[0];
+      const phoneNumber = document.querySelector("#phone");
+      const phone = plusWithNumber + phoneNumber.value;
 
       // Password match check
       if (password !== confirmPassword) {
@@ -169,16 +192,25 @@ document.addEventListener("DOMContentLoaded", () => {
               last_name: lastname,
               password,
               email,
+              phone,
             }),
           }
         );
-
         const data = await response.json();
 
         if (response.ok && data.response && data.response.token) {
           // Store user data in cookies
           Cookies.set("userEmail", email, { expires: 7, secure: true });
           Cookies.set("authToken", data.response.token, {
+            expires: 7,
+            secure: true,
+          });
+          // Store first and last name in cookies
+          Cookies.set("userFirstName", data.response.firstname, {
+            expires: 7,
+            secure: true,
+          });
+          Cookies.set("userLastName", data.response.lastname, {
             expires: 7,
             secure: true,
           });
@@ -215,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
           showToastMessage(
             "Signup failed: " + (data.message || "Unknown error")
           );
+          signupForm.reset();
         }
       } catch (error) {
         showToastMessage("An error occurred during signup. Please try again.");
@@ -257,6 +290,15 @@ document.addEventListener("DOMContentLoaded", () => {
               secure: true,
             });
           }
+          // Store first and last name in cookies
+          Cookies.set("userFirstName", data.response.firstname, {
+            expires: 7,
+            secure: true,
+          });
+          Cookies.set("userLastName", data.response.lastname, {
+            expires: 7,
+            secure: true,
+          });
 
           showToastMessage("Login Successful!");
           console.log(data.response);
@@ -328,6 +370,8 @@ document.addEventListener("DOMContentLoaded", () => {
           // Clear cookies
           Cookies.remove("userEmail");
           Cookies.remove("authToken");
+          Cookies.remove("userFirstName");
+          Cookies.remove("userLastName");
 
           // Update UI for logged out state
           updateUIForLoggedInUser(null);

@@ -365,6 +365,17 @@ p.forget_pass:hover {
   }
 }
 
+.iti__country-name,
+.iti__dial-code {
+  display: inline-block !important;
+  margin-top: 0 !important;
+}
+
+.tel_input {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
 /*
 ====================================
 Code for making responsive
