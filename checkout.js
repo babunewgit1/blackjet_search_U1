@@ -755,6 +755,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       const cntBtn = document.querySelector(".checkbtn");
       const detailsImg = document.querySelector(".che_trip_img");
       const confirmationText = document.querySelector(".confiramtion_text");
+      const stepTwoForm = document.querySelector(".cht_cnt");
+      const stepOneForm = document.querySelector(".ch_trip_left");
+      const backBtn = document.querySelector(".backbtn");
 
       cntBtn.addEventListener("click", function () {
         const checkDateValue = document.querySelector(
@@ -764,11 +767,10 @@ document.addEventListener("DOMContentLoaded", async function () {
           ".departure-time-input"
         ).value;
 
-        if (checkDateValue && checkTimeValue) {
-          detailsImg.innerHTML = "";
-          confirmationText.innerHTML = "";
+        detailsImg.innerHTML = "";
+        confirmationText.innerHTML = "";
 
-          detailsImg.innerHTML = `
+        detailsImg.innerHTML = `
           <div class="trip_img_ch">
             <div class="trip_img_ch_left">
               <img src="${dataResponse.aircraft_image}" alt="aircraft_img" />
@@ -780,7 +782,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           </div>
         `;
 
-          confirmationText.innerHTML = `
+        confirmationText.innerHTML = `
             <div class="confimationtext_wrapper">
               <div class="confi_clock">
                 <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68722f3d340c05378e74674f_BlackJet-2.png" alt="clock_icon" />
@@ -791,9 +793,18 @@ document.addEventListener("DOMContentLoaded", async function () {
               </div>
             </div>
           `;
-        } else {
-          alert("Please submit date and time properly");
-        }
+
+        // display step 2 form
+        stepTwoForm.style.display = "block";
+        stepOneForm.style.display = "none";
+      });
+
+      // function for back button
+      backBtn.addEventListener("click", function () {
+        stepTwoForm.style.display = "none";
+        stepOneForm.style.display = "block";
+        detailsImg.innerHTML = "";
+        confirmationText.innerHTML = "";
       });
 
       // Add event listeners to date inputs to update .tripheading date in .tripbox
