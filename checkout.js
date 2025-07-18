@@ -807,6 +807,32 @@ document.addEventListener("DOMContentLoaded", async function () {
         confirmationText.innerHTML = "";
       });
 
+      // function for payment option
+      const paymentHeaders = document.querySelectorAll(".chtfp_name");
+      paymentHeaders.forEach(function (header) {
+        header.addEventListener("click", function () {
+          paymentHeaders.forEach(function (otherHeader) {
+            if (otherHeader !== header) {
+              otherHeader.classList.remove("active");
+              const sibling = otherHeader.nextElementSibling;
+              if (sibling) {
+                sibling.style.display = "none";
+              }
+            }
+          });
+          const detailSection = header.nextElementSibling;
+          if (detailSection) {
+            if (detailSection.style.display === "block") {
+              detailSection.style.display = "none";
+              header.classList.remove("active");
+            } else {
+              detailSection.style.display = "block";
+              header.classList.add("active");
+            }
+          }
+        });
+      });
+
       // Add event listeners to date inputs to update .tripheading date in .tripbox
       document
         .querySelectorAll('input[type="date"][data-leg-index]')
@@ -840,4 +866,90 @@ document.addEventListener("DOMContentLoaded", async function () {
   } else {
     alert("No search found");
   }
+});
+
+// add passenger function
+document.addEventListener("DOMContentLoaded", function () {
+  const authToken = Cookies.get("authToken");
+  document.querySelector(".psng_cnt_wrap form").reset(); // form reset
+
+  // open popup when user will click in add new button
+  const addBtn = document.querySelector(".chtf_pass_info button");
+  const popUpBox = document.querySelector(".passenger");
+  const closeBtn = document.querySelector(".psng_cross img");
+  const cancelBtn = document.querySelector(".cancelbtn");
+  addBtn.addEventListener("click", function () {
+    popUpBox.style.display = "flex";
+    document.querySelector("body").style.overflow = "hidden";
+  });
+
+  //close popup
+  closeBtn.addEventListener("click", function () {
+    popUpBox.style.display = "none";
+    document.querySelector("body").style.overflow = "visible";
+  });
+  cancelBtn.addEventListener("click", function () {
+    popUpBox.style.display = "none";
+    document.querySelector("body").style.overflow = "visible";
+  });
+
+  // function for sending passenger info in api and display them in dom.
+  const passengerForm = document.querySelector(".psng_cnt_wrap form");
+  passengerForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const pFirstName = document.querySelector("#pfristname").value;
+    const pLastName = document.querySelector("#plastname").value;
+    const pMiddleName = document.querySelector("#pmiddlename").value;
+    const pGender = document.querySelector("#pgender").value;
+    const pWeight = document.querySelector("#pweight").value;
+    const pBod = document.querySelector("#pbod").value;
+    const pMail = document.querySelector("#pemail").value;
+    const pNeeds = document.querySelector("#pneeds").value;
+    const titlePhone = document
+      .querySelector(".iti__selected-flag")
+      .getAttribute("title");
+    const plusWithNumberPass = titlePhone.match(/\+\d+/)[0];
+    const phoneNumberInput = document.querySelector("#telephone");
+    const phoneFinal = plusWithNumberPass + phoneNumberInput.value;
+
+    // Prepare the data to send
+    const passengerData = {
+      first_name: pFirstName,
+      last_name: pLastName,
+      middle_name: pMiddleName,
+      gender: pGender,
+      weight: pWeight,
+      dob: pBod,
+      mobile: phoneFinal,
+      email: pMail,
+      special_needs: pNeeds,
+    };
+
+    const submitBtn = document.querySelector(".submitbtn");
+    submitBtn.textContent = "saving...";
+
+    fetch(
+      "https://operators-dashboard.bubbleapps.io/api/1.1/wf/webflow_add_passenger_blackjet",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(passengerData),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("API Response:", data);
+        submitBtn.textContent = "save";
+        popUpBox.style.display = "none";
+        document.querySelector("body").style.overflow = "visible";
+        document.querySelector(".psng_cnt_wrap form").reset();
+      })
+      .catch((error) => {
+        console.error("API Error:", error);
+        submitBtn.textContent = "save";
+      });
+  });
 });

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="checkout.css" />
   </head>
   <body>
-    <div class="cht_cnt">
+    <!-- <div class="cht_cnt">
       <h3 class="ch_trip_left_det_heading">Checkout</h3>
       <div class="cht_cnt_form">
         <form>
@@ -235,6 +235,215 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
+    <section class="passenger">
+      <div class="psng_wrapper">
+        <div class="psng_cnt">
+          <div class="psng_heading">
+            <h3 class="ch_trip_left_det_heading">Add New Passenger</h3>
+            <div class="psng_cross">
+              <img
+                src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123d9f2800197a5c59ee0a_crossx.png"
+                alt="cross Icon"
+              />
+            </div>
+          </div>
+          <div class="psng_cnt_wrap">
+            <div class="psng_cnt_heading">
+              <h4>Basic Information</h4>
+              <p>Required*</p>
+            </div>
+            <form>
+              <div class="psng_input_group">
+                <div class="psng_inpgrp_top">
+                  <div class="signin_input">
+                    <label>First Name*</label>
+                    <input
+                      id="pfristname"
+                      required=""
+                      type="text"
+                      placeholder="Amit"
+                    />
+                  </div>
+                  <div class="signin_input">
+                    <label>Last Name*</label>
+                    <input
+                      id="plastname"
+                      required=""
+                      type="text"
+                      placeholder="Mandal"
+                    />
+                  </div>
+                  <div class="signin_input">
+                    <label>Middle Name</label>
+                    <input id="pmiddlename" type="text" placeholder="Kumar" />
+                  </div>
+                  <div class="signin_input signin_select">
+                    <label>Gender*</label>
+                    <select required name="" id="pgender">
+                      <option selected value="">-select-</option>
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Non-Binary">Non-Binary</option>
+                    </select>
+                  </div>
+                  <div class="signin_input">
+                    <label>Weight*</label>
+                    <input
+                      id="pweight"
+                      required=""
+                      type="text"
+                      placeholder="000 lbs"
+                    />
+                    <p>Accuracy needed for flight planning</p>
+                  </div>
+                  <div class="ch_date signin_input">
+                    <label>Date of Birth*</label>
+                    <input id="pbod" required type="date" />
+                    <p>Children 0-8 yrs. must fly with adult</p>
+                  </div>
+                  <div class="signin_input">
+                    <label>Mobile No*</label>
+                    <input
+                      required
+                      id="telephone"
+                      name="phone"
+                      type="text"
+                      placeholder="(000) 000-0000"
+                    />
+                    <p>For real-time notifications</p>
+                  </div>
+                  <div class="signin_input">
+                    <label>Email*</label>
+                    <input
+                      id="pemail"
+                      required=""
+                      type="text"
+                      placeholder="info@email.com"
+                    />
+                  </div>
+                </div>
+                <div class="psng_inpgrp_bottom">
+                  <div class="signin_input signin_select">
+                    <label>Special Needs</label>
+                    <select id="pneeds">
+                      <option selected value="none">None</option>
+                      <option value="Wheelchair Required – At Airport">
+                        Wheelchair Required – At Airport
+                      </option>
+                      <option value="Wheelchair Required – To Aircraft Door">
+                        Wheelchair Required – To Aircraft Door
+                      </option>
+                      <option value="Wheelchair Required – To Aircraft Seat">
+                        Wheelchair Required – To Aircraft Seat
+                      </option>
+                      <option value="Mobility Assistance – Boarding/Deplaning">
+                        Mobility Assistance – Boarding/Deplaning
+                      </option>
+                      <option value="Hearing Impairment">
+                        Hearing Impairment
+                      </option>
+                      <option value="Visual Impairment">
+                        Visual Impairment
+                      </option>
+                      <option value="Service Animal Onboard">
+                        Service Animal Onboard
+                      </option>
+                      <option value="Emotional Support Animal Onboard">
+                        Emotional Support Animal Onboard
+                      </option>
+                      <option value="Oxygen Required In-Flight">
+                        Oxygen Required In-Flight
+                      </option>
+                      <option value="Stretcher Required">
+                        Stretcher Required
+                      </option>
+                      <option value="Elderly Passenger – Additional Assistance">
+                        Elderly Passenger – Additional Assistance
+                      </option>
+                      <option value="Unaccompanied Minor">
+                        Unaccompanied Minor
+                      </option>
+                      <option
+                        value="Pregnant Passenger – Special Consideration"
+                      >
+                        Pregnant Passenger – Special Consideration
+                      </option>
+                      <option value="Allergy Alert – Severe (e.g. Nuts, Pets)">
+                        Allergy Alert – Severe (e.g. Nuts, Pets)
+                      </option>
+                      <option value="Incontinence – Special Seating/Privacy">
+                        Incontinence – Special Seating/Privacy
+                      </option>
+                      <option
+                        value="Portable Medical Device Onboard (e.g. CPAP)"
+                      >
+                        Portable Medical Device Onboard (e.g. CPAP)
+                      </option>
+                      <option value="Extra Time Needed for Boarding">
+                        Extra Time Needed for Boarding
+                      </option>
+                      <option
+                        value="Passenger with Autism or Developmental Disability"
+                      >
+                        Passenger with Autism or Developmental Disability
+                      </option>
+                      <option value="Passenger with Cognitive Impairment">
+                        Passenger with Cognitive Impairment
+                      </option>
+                      <option
+                        value="Seating Near Companion or Caregiver Required"
+                      >
+                        Seating Near Companion or Caregiver Required
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="submit_form">
+                  <button class="cancelbtn" type="button">Cancel</button>
+                  <button class="submitbtn" type="submit">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="psng_ask">
+          <div class="psng_ask_left">
+            <div class="psng_ask_left_icon">
+              <img
+                src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/687a688daafacd8f1386b5e9_ask.png"
+                alt="quesiton Icon"
+              />
+            </div>
+            <div class="psng_ask_left_text">
+              <h3>Questions?</h3>
+              <p>Contact Member Services</p>
+            </div>
+          </div>
+          <div class="psng_ask_right">
+            <ul>
+              <li>
+                <a href="tel:(866) 321-JETS">
+                  <img
+                    src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/687a698d54127378a0144c2f_tele.png"
+                    alt="telephone icon"
+                  />
+                  (866) 321-JETS</a
+                >
+              </li>
+              <li>
+                <a href="mailto:info@blackjet.com">
+                  <img
+                    src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/687a698d1411be036ea07911_mail.png"
+                    alt="mail icon"
+                  />
+                  info@blackjet.com</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
