@@ -262,6 +262,13 @@ function setupTimeDropdown() {
   });
 }
 
+// function for redirecting from error page.
+const searchLink = document.querySelector(".notf_searchbtn a");
+searchLink.addEventListener("click", function () {
+  const redirectLink = localStorage.getItem("link") || "/";
+  window.location.href = redirectLink;
+});
+
 document.addEventListener("DOMContentLoaded", async function () {
   // Use .loading_check div for loading state
   const loadingDiv = document.querySelector(".loading_check");
@@ -272,8 +279,33 @@ document.addEventListener("DOMContentLoaded", async function () {
   const aircraftId = sessionStorage.getItem("aircraftid");
   const flightRequestIdContinue = sessionStorage.getItem("frequestid");
 
-  if (userEmail && authToken && aircraftId && flightRequestIdContinue) {
-    if (loadingDiv) loadingDiv.style.display = "block";
+  // If user is not logged in, show login form and reload after login
+  if (!userEmail || !authToken) {
+    const authPopUpWrapper = document.querySelector(".auth-popup");
+    const authBlockPopup = document.querySelector(".auth_block_popup");
+    const authForget = document.querySelector(".auth_forget");
+
+    authPopUpWrapper.classList.add("active_popup");
+    authBlockPopup.style.display = "block";
+    authForget.style.display = "none";
+    document.querySelector("#signin").classList.add("active_form");
+    document.querySelector("#signup").classList.remove("active_form");
+    document.querySelector("[data='signin']").style.display = "block";
+    document.querySelector("[data='signup']").style.display = "none";
+
+    // Listen for a custom event 'userLoggedIn' to reload the page after login
+    window.addEventListener(
+      "userLoggedIn",
+      function () {
+        window.location.reload();
+      },
+      { once: true }
+    );
+    return;
+  }
+
+  if (aircraftId && flightRequestIdContinue) {
+    // if (loadingDiv) loadingDiv.style.display = "block";
     try {
       const response = await fetch(
         "https://operators-dashboard.bubbleapps.io/api/1.1/wf/webflow_continue_button_blackjet",
@@ -794,6 +826,14 @@ document.addEventListener("DOMContentLoaded", async function () {
             </div>
           `;
 
+        // fill checkout stepone info from api data.
+        document.querySelector("#prefirstname").value = dataResponse.first_name;
+        document.querySelector("#prelastname").value = dataResponse.last_name;
+        document.querySelector("#prephone").value = dataResponse.phone;
+        document.querySelector("#premail").value = dataResponse.email;
+        document.querySelector(".chtf_heading a span").textContent =
+          dataResponse.email;
+
         // display step 2 form
         stepTwoForm.style.display = "block";
         stepOneForm.style.display = "none";
@@ -864,7 +904,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (loadingDiv) loadingDiv.style.display = "none";
     }
   } else {
-    alert("No search found");
+    document.querySelector(".notfound").style.display = "flex";
   }
 });
 
@@ -873,8 +913,140 @@ document.addEventListener("DOMContentLoaded", function () {
   const authToken = Cookies.get("authToken");
   document.querySelector(".psng_cnt_wrap form").reset(); // form reset
 
+  // Fetch and display passengers on page load
+  const domPassengerList = document.querySelector(".chtf_pass_list");
+  if (authToken && domPassengerList) {
+    fetch(
+      "https://operators-dashboard.bubbleapps.io/api/1.1/wf/webflow_get_passengers_blackjet",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (!window.selectedPassengers) window.selectedPassengers = [];
+        const passengerList = data.response.saved_passengers || [];
+        window.lastFetchedPassengers = passengerList; // Store for use in renderDropdownList
+        // Update the dropdown list (.chtf_pass_info)
+        const dropdownList = document.querySelector(".chtf_pass_info");
+        const selectedPassElement = document.querySelector(".selectedpass");
+
+        // Initialize selected passengers array
+        window.selectedPassengers = window.selectedPassengers || [];
+
+        // Clear and populate the dropdown
+        dropdownList.innerHTML = `
+          <div class="pass_drop_list">
+            ${passengerList
+              .filter(
+                (p) =>
+                  !window.selectedPassengers
+                    .map((sel) => sel.id)
+                    .includes(p._id)
+              )
+              .map(
+                (passenger) => `
+              <div class="single_passenger" data-passenger-id="${
+                passenger._id || ""
+              }">
+                <div class="stored_passenger">
+                  <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123a3a00245af158cbc3f7_user.png" alt="user_icon" />
+                  <p>
+                    <span>${passenger.first_name_text || ""}</span>
+                    <span>${passenger.middle_name_text || ""}</span>
+                    <span>${passenger.last_name_text || ""}</span>
+                  </p>
+                </div>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+        `;
+
+        // Add click event listeners to passengers in dropdown
+        dropdownList
+          .querySelectorAll(".single_passenger")
+          .forEach((passenger) => {
+            passenger.addEventListener("click", function () {
+              // Get the passenger name from spans
+              const firstName =
+                this.querySelector("span:nth-child(1)").textContent;
+              const middleName =
+                this.querySelector("span:nth-child(2)").textContent;
+              const lastName =
+                this.querySelector("span:nth-child(3)").textContent;
+
+              // Create full name (handling empty middle name)
+              const fullName = [firstName, middleName, lastName]
+                .filter((name) => name.trim() !== "")
+                .join(" ");
+
+              // Get passenger id
+              const passengerId = this.getAttribute("data-passenger-id");
+              // Add to selected passengers
+              window.selectedPassengers.push({
+                id: passengerId,
+                name: fullName,
+              });
+              // Update the selectedpass element with all selected passengers
+              if (selectedPassElement) {
+                selectedPassElement.innerHTML = window.selectedPassengers
+                  .map(
+                    (
+                      p
+                    ) => `<div class="selectedpassname" data-passenger-id="${p.id}">
+                    <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123a3a00245af158cbc3f7_user.png" alt="person icon" />
+                    <p>${p.name}</p>
+                    <span class="remove-selected-passenger" style="cursor:pointer;font-weight:bold;margin-left:8px;">&times;</span>
+                  </div>`
+                  )
+                  .join("");
+                // Add event listeners to cross buttons
+                selectedPassElement
+                  .querySelectorAll(".remove-selected-passenger")
+                  .forEach((btn) => {
+                    btn.addEventListener("click", function (e) {
+                      e.stopPropagation();
+                      const passDiv = this.closest(".selectedpassname");
+                      const passengerId =
+                        passDiv.getAttribute("data-passenger-id");
+                      // Remove from selectedPassengers
+                      window.selectedPassengers =
+                        window.selectedPassengers.filter(
+                          (p) => p.id !== passengerId
+                        );
+                      // Remove from DOM
+                      passDiv.remove();
+                      // Add back to dropdown
+                      renderDropdownList();
+                    });
+                  });
+              }
+              // Remove from dropdown
+              this.remove();
+              // If no more passengers left, show message
+              const passDropList =
+                dropdownList.querySelector(".pass_drop_list");
+              if (passDropList && passDropList.children.length === 0) {
+                passDropList.innerHTML =
+                  '<div class="no-more-passenger">no more saved passenger</div>';
+              }
+              // Hide dropdown after selection
+              prePassDropHolder.classList.remove("activepassdrop");
+            });
+          });
+      })
+      .catch((error) => {
+        console.error("Error fetching passengers on load:", error);
+      });
+  }
+
   // open popup when user will click in add new button
-  const addBtn = document.querySelector(".chtf_pass_info button");
+  const addBtn = document.querySelector(".passreq button");
   const popUpBox = document.querySelector(".passenger");
   const closeBtn = document.querySelector(".psng_cross img");
   const cancelBtn = document.querySelector(".cancelbtn");
@@ -919,6 +1091,7 @@ document.addEventListener("DOMContentLoaded", function () {
       middle_name: pMiddleName,
       gender: pGender,
       weight: pWeight,
+      dob_as_text: pBod,
       dob: pBod,
       mobile: phoneFinal,
       email: pMail,
@@ -946,10 +1119,178 @@ document.addEventListener("DOMContentLoaded", function () {
         popUpBox.style.display = "none";
         document.querySelector("body").style.overflow = "visible";
         document.querySelector(".psng_cnt_wrap form").reset();
+
+        // Fetch updated passenger list after adding new passenger
+        fetch(
+          "https://operators-dashboard.bubbleapps.io/api/1.1/wf/webflow_get_passengers_blackjet",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (!window.selectedPassengers) window.selectedPassengers = [];
+            const passengerList = data.response.saved_passengers || [];
+            window.lastFetchedPassengers = passengerList; // Store for use in renderDropdownList
+            // Always re-render the dropdown after updating the passenger list
+            renderDropdownList();
+            // Do not overwrite dropdownList.innerHTML elsewhere after this
+          })
+          .catch((error) => {
+            console.error("Error fetching passengers after add:", error);
+          });
       })
       .catch((error) => {
         console.error("API Error:", error);
         submitBtn.textContent = "save";
       });
   });
+
+  // code for passenger dropdown
+  const passDropHolder = document.querySelector(".passreq p");
+  const prePassDropHolder = document.querySelector(".chtf_pass_info");
+
+  passDropHolder.addEventListener("click", function () {
+    prePassDropHolder.classList.toggle("activepassdrop");
+  });
 });
+
+// Helper function to create a dropdown passenger div and attach click handler
+function createDropdownPassengerDiv(
+  passenger,
+  selectedPassElement,
+  prePassDropHolder
+) {
+  const newDiv = document.createElement("div");
+  newDiv.className = "single_passenger";
+  newDiv.setAttribute("data-passenger-id", passenger._id);
+  newDiv.innerHTML = `
+    <div class="stored_passenger">
+      <img src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123a3a00245af158cbc3f7_user.png" alt="user_icon" />
+      <p>
+        <span>${passenger.first_name_text || ""}</span>
+        <span>${passenger.middle_name_text || ""}</span>
+        <span>${passenger.last_name_text || ""}</span>
+      </p>
+    </div>
+  `;
+  newDiv.addEventListener("click", function () {
+    const firstName = this.querySelector("span:nth-child(1)").textContent;
+    const middleName = this.querySelector("span:nth-child(2)").textContent;
+    const lastName = this.querySelector("span:nth-child(3)").textContent;
+    const fullName = [firstName, middleName, lastName]
+      .filter((name) => name.trim() !== "")
+      .join(" ");
+    window.selectedPassengers.push({
+      id: passenger._id,
+      name: fullName,
+    });
+    if (selectedPassElement) {
+      selectedPassElement.innerHTML = window.selectedPassengers
+        .map(
+          (p) => `<div class=\"selectedpassname\" data-passenger-id=\"${p.id}\">
+            <img src=\"https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68123a3a00245af158cbc3f7_user.png\" alt=\"person icon\" />
+            <p>${p.name}</p>
+            <span class=\"remove-selected-passenger\" style=\"cursor:pointer;font-weight:bold;margin-left:8px;\">&times;</span>
+          </div>`
+        )
+        .join("");
+      // Re-attach remove event listeners
+      selectedPassElement
+        .querySelectorAll(".remove-selected-passenger")
+        .forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const passDiv = this.closest(".selectedpassname");
+            const passengerId = passDiv.getAttribute("data-passenger-id");
+            window.selectedPassengers = window.selectedPassengers.filter(
+              (p) => p.id !== passengerId
+            );
+            passDiv.remove();
+            // Add back to dropdown
+            renderDropdownList();
+          });
+        });
+    }
+    this.remove();
+    renderDropdownList();
+    prePassDropHolder.classList.remove("activepassdrop");
+  });
+  // Insert in alphabetical order
+  const dropdownList = document.querySelector(
+    ".chtf_pass_info .pass_drop_list"
+  );
+  if (dropdownList) {
+    // Remove 'no more saved passenger' if present
+    const noMore = dropdownList.querySelector(".no-more-passenger");
+    if (noMore) noMore.remove();
+    // Find correct position
+    let inserted = false;
+    for (let i = 0; i < dropdownList.children.length; i++) {
+      const child = dropdownList.children[i];
+      if (child.classList.contains("single_passenger")) {
+        const childName = child
+          .querySelector("p")
+          .textContent.trim()
+          .toLowerCase();
+        const thisName = newDiv
+          .querySelector("p")
+          .textContent.trim()
+          .toLowerCase();
+        if (thisName < childName) {
+          dropdownList.insertBefore(newDiv, child);
+          inserted = true;
+          break;
+        }
+      }
+    }
+    if (!inserted) dropdownList.appendChild(newDiv);
+  }
+}
+
+function renderDropdownList() {
+  const dropdownList = document.querySelector(
+    ".chtf_pass_info .pass_drop_list"
+  );
+  if (!dropdownList) return;
+  // Remove all children
+  dropdownList.innerHTML = "";
+  const availablePassengers = (window.lastFetchedPassengers || []).filter(
+    (p) => !window.selectedPassengers.some((sel) => sel.id === p._id)
+  );
+  if (availablePassengers.length === 0) {
+    dropdownList.innerHTML =
+      '<div class="no-more-passenger">no more saved passenger</div>';
+    return;
+  }
+  availablePassengers.forEach((passenger) => {
+    createDropdownPassengerDiv(
+      passenger,
+      document.querySelector(".selectedpass"),
+      document.querySelector(".chtf_pass_info")
+    );
+  });
+}
+
+function attachRemoveSelectedPassengerListeners(
+  selectedPassElement,
+  prePassDropHolder
+) {
+  selectedPassElement
+    .querySelectorAll(".remove-selected-passenger")
+    .forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const passDiv = this.closest(".selectedpassname");
+        const passengerId = passDiv.getAttribute("data-passenger-id");
+        window.selectedPassengers = window.selectedPassengers.filter(
+          (p) => p.id !== passengerId
+        );
+        passDiv.remove();
+        renderDropdownList();
+      });
+    });
+}

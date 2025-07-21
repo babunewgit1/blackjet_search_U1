@@ -243,6 +243,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (authPopup) {
             authPopup.classList.remove("active_popup");
           }
+
+          // Dispatch event to trigger reload in checkout.js
+          window.dispatchEvent(new Event("userLoggedIn"));
         } else {
           showToastMessage(
             "Signup failed: " + (data.message || "Unknown error")
@@ -329,6 +332,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (authPopup) {
             authPopup.classList.remove("active_popup");
           }
+
+          // Dispatch event to trigger reload in checkout.js
+          window.dispatchEvent(new Event("userLoggedIn"));
         } else {
           showToastMessage(
             "Login failed: " + (data.message || "Invalid credentials")

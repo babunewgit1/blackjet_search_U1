@@ -517,23 +517,26 @@
   margin-bottom: 6px;
 }
 
-.chtf_pass_info {
+.passreq {
   width: 100%;
   outline: none;
   background: #f1f1f1;
   border: 1px solid #bdbdbd;
-  padding: 7px 13px;
+  padding: 0px 13px;
   display: grid;
   grid-template-columns: 1fr 110px;
-  column-gap: 10px;
+  column-gap: 70px;
+  align-items: center;
+  padding-left: 0;
 }
 
 .chtf_pass_info p {
   display: flex;
   align-items: center;
-  column-gap: 6px;
+  column-gap: 3px;
   font-size: 18px;
   color: #000;
+  line-height: 1;
 }
 
 .chtf_pass_info p img {
@@ -542,7 +545,7 @@
   opacity: 0.6;
 }
 
-.chtf_pass_info button {
+.passreq button {
   display: inline-block;
   font-size: 16px;
   color: #fff;
@@ -554,12 +557,41 @@
   transition: all 0.2 ease;
 }
 
-.chtf_pass_info button:hover {
+.passreq button:hover {
   opacity: 0.7;
+}
+
+.passreq p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 14px;
+  cursor: pointer;
 }
 
 .chtf_payment {
   margin-top: 20px;
+}
+
+.pgs_wrapper {
+  position: relative;
+}
+
+.chtf_pass_info {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px 0px;
+  border-radius: 0px 0px 5px 5px;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
 }
 
 .chtf_payment_wrapper > p {
@@ -1006,4 +1038,63 @@
   border: 6px solid #000;
 }
 
+.activepassdrop {
+  display: block;
+}
 /* --code for popup end-- */
+
+.selectedpassname {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.selectedpassname img {
+  display: block;
+  width: 15px;
+}
+
+.selectedpassname {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border: 1px solid #bdbdbd;
+  padding: 10px 10px;
+  margin-top: 14px;
+  position: relative;
+}
+
+.no-more-passenger {
+  font-size: 25px;
+  padding: 14px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.stored_passenger {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stored_passenger:hover {
+  background-color: #fff;
+}
+
+.stored_passenger > img {
+  display: block;
+  width: 14px;
+}
+
+.remove-selected-passenger {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+}
