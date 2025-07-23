@@ -52,57 +52,69 @@ checkoutFnForm.addEventListener("submit", function (e) {
     return;
   }
 
+  const frequestid = sessionStorage.getItem("frequestid");
+  if (!frequestid) {
+    const notFound = document.querySelector(".notfound");
+    notFound.style.display = "flex";
+    return;
+  }
+
   //block form submission if user does not select any payment
   const selected = document.querySelector(".chtfp_name.active");
   if (!selected) {
     alert("Please select a payment method.");
     return;
   }
-
   const paymentText = selected.querySelector("p").innerText.trim();
-  console.log("Selected Payment Method:", paymentText);
 
   // Collect selected passenger IDs
   const selectedIds = Array.from(
     selectedPass.querySelectorAll(".selectedpassname")
   ).map((div) => div.getAttribute("data-passenger-id"));
-  console.log("Selected passenger IDs:", selectedIds);
 
-  // Collect and log all flight dates from window.tripData
-  console.log(
-    window.tripData && window.tripData[0]
-      ? window.tripData[0].date_as_text1_text
-      : "No leg 1 date"
-  );
-  console.log(
-    window.tripData && window.tripData[1]
-      ? window.tripData[1].date_as_text1_text
-      : "No leg 2 date"
-  );
-
-  const frequestid = sessionStorage.getItem("frequestid");
+  // Utility function to convert date strings to 'MM/DD/YYYY'
+  function formatDateToMMDDYYYY(dateStr) {
+    if (!dateStr) return "";
+    const parts = dateStr.split("-");
+    if (parts.length !== 3) return dateStr;
+    if (parts[0].length === 4) {
+      return `${parts[1]}/${parts[2]}/${parts[0]}`;
+    } else {
+      return `${parts[1]}/${parts[0]}/${parts[2]}`;
+    }
+  }
   // Prepare API parameters
+
   const flightrequestid = frequestid;
   const payment_method = paymentText;
   const cc_number = cardNumber.value;
   const cc_expiry = expireDate.value;
   const cc_cvc = cvc.value;
-  console.log(cc_number, cc_expiry, cc_cvc);
   const leg_1_date =
-    window.tripData &&
-    window.tripData[0] &&
-    window.tripData[0].date_as_text1_text
-      ? window.tripData[0].date_as_text1_text
+    window.tripData && window.tripData[0]
+      ? formatDateToMMDDYYYY(window.tripData[0].date_as_text1_text)
       : "";
   const leg_1_date_as_text = leg_1_date;
   const leg_2_date =
-    window.tripData &&
-    window.tripData[1] &&
-    window.tripData[1].date_as_text1_text
-      ? window.tripData[1].date_as_text1_text
+    window.tripData && window.tripData[1]
+      ? formatDateToMMDDYYYY(window.tripData[1].date_as_text1_text)
       : "";
   const leg_2_date_as_text = leg_2_date;
   const passengers = selectedIds;
+
+  // Build request body and conditionally add leg_2_date and leg_2_date_as_text
+  const requestBody = {
+    flightrequestid,
+    payment_method,
+    leg_1_date,
+    leg_1_date_as_text,
+    passengers,
+  };
+  if (cc_number) requestBody.cc_number = cc_number;
+  if (cc_expiry) requestBody.cc_expiry = cc_expiry;
+  if (cc_cvc) requestBody.cc_cvc = cc_cvc;
+  if (leg_2_date) requestBody.leg_2_date = leg_2_date;
+  if (leg_2_date_as_text) requestBody.leg_2_date_as_text = leg_2_date_as_text;
 
   // API call
   fetch(
@@ -110,31 +122,23 @@ checkoutFnForm.addEventListener("submit", function (e) {
     {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${authToken}`,
       },
-      body: JSON.stringify({
-        flightrequestid,
-        payment_method,
-        cc_number,
-        cc_expiry,
-        cc_cvc,
-        leg_1_date,
-        leg_1_date_as_text,
-        leg_2_date,
-        leg_2_date_as_text,
-        passengers,
-      }),
+      body: JSON.stringify(requestBody),
     }
   )
-    .then((response) => {
+    .then(async (response) => {
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API error response:", errorText);
         throw new Error("Network response was not ok");
       }
       return response.json();
     })
     .then((data) => {
-      alert("Booking completed successfully!");
       console.log("API response:", data);
+      window.location.href = "/checkout-confimation";
     })
     .catch((error) => {
       alert("There was an error submitting the booking. Please try again.");

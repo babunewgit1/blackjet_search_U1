@@ -422,38 +422,44 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         // 3. Add Airplane Icon
-        map.loadImage("airplane.svg", (error, image) => {
-          if (error) throw error;
-          if (!map.hasImage("airplane-icon")) {
-            map.addImage("airplane-icon", image, { sdf: false });
+        map.loadImage(
+          "https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6784edaa72ef1dafeb837b62_aroplane.avif",
+          (error, image) => {
+            if (error) throw error;
+            if (!map.hasImage("airplane-icon")) {
+              map.addImage("airplane-icon", image, { sdf: false });
+            }
+
+            const routeDistance = turf.length(route);
+            const airplanePositionPoint = turf.along(
+              route,
+              routeDistance * 0.8
+            );
+            const pointSlightlyBefore = turf.along(route, routeDistance * 0.79);
+            const bearing = turf.bearing(
+              pointSlightlyBefore,
+              airplanePositionPoint
+            );
+
+            map.addSource("airplane-source", {
+              type: "geojson",
+              data: airplanePositionPoint,
+            });
+
+            map.addLayer({
+              id: "airplane-layer",
+              type: "symbol",
+              source: "airplane-source",
+              layout: {
+                "icon-image": "airplane-icon",
+                "icon-size": 1,
+                "icon-allow-overlap": true,
+                "icon-ignore-placement": true,
+                "icon-rotate": bearing - 90,
+              },
+            });
           }
-
-          const routeDistance = turf.length(route);
-          const airplanePositionPoint = turf.along(route, routeDistance * 0.8);
-          const pointSlightlyBefore = turf.along(route, routeDistance * 0.79);
-          const bearing = turf.bearing(
-            pointSlightlyBefore,
-            airplanePositionPoint
-          );
-
-          map.addSource("airplane-source", {
-            type: "geojson",
-            data: airplanePositionPoint,
-          });
-
-          map.addLayer({
-            id: "airplane-layer",
-            type: "symbol",
-            source: "airplane-source",
-            layout: {
-              "icon-image": "airplane-icon",
-              "icon-size": 1,
-              "icon-allow-overlap": true,
-              "icon-ignore-placement": true,
-              "icon-rotate": bearing - 90,
-            },
-          });
-        });
+        );
 
         // 4. Custom Airport Markers
         const elFrom = document.createElement("div");
