@@ -592,6 +592,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   display: none;
+  z-index: 999;
 }
 
 .chtf_payment_wrapper > p {
@@ -1097,4 +1098,583 @@
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 25px;
+}
+
+@media screen and (min-width: 1340px) and (max-width: 1500px) {
+}
+
+@media screen and (min-width: 992px) and (max-width: 1340px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+
+  .ch_trip_wrapper {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 30px;
+  }
+
+  .ch_trip_left_det_heading {
+    font-size: 1.3rem;
+  }
+
+  .ch_trip_det_cnt {
+    margin-top: 12px;
+  }
+
+  .ch_trip_left,
+  .cht_cnt {
+    padding: 0;
+  }
+
+  .ch_trip_cnt {
+    grid-template-columns: 1fr;
+  }
+
+  .trip_details_top {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .trip_pecenger {
+    margin-top: 5px;
+    margin-bottom: 14px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 20px;
+  }
+
+  .trip_date_oneway p {
+    margin-top: 10px !important;
+  }
+
+  .trip_one_date {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+  .checkbtn {
+    margin-top: 20px;
+  }
+
+  .ch_trip_right_cnt,
+  .che_trip_img {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_img_ch {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    row-gap: 20px;
+  }
+
+  .trip_img_ch_right h3 {
+    font-size: 25px;
+  }
+
+  .trip_img_ch_right p {
+    font-size: 20px;
+  }
+
+  .trip_img_ch_right p img {
+    display: inline-block;
+    width: 18px;
+  }
+
+  .tripbox {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .trip_place_left h3 {
+    min-width: 95px;
+    font-size: 22px;
+    padding: 8px 10px;
+  }
+
+  .time_calcu {
+    margin: 20px 0px;
+  }
+
+  .trip_cal_name {
+    font-size: 15px;
+  }
+
+  .trip_cal_number {
+    font-size: 14px;
+  }
+
+  .trip_cal_text:nth-child(2)::before {
+    right: -35px;
+  }
+
+  .trip_cal_text:nth-child(2)::after {
+    left: -35px;
+  }
+
+  .trip_total_cal {
+    padding: 20px 15px;
+  }
+
+  .ch_policy {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+  }
+
+  .ch_policy_wrapper {
+    max-width: 100%;
+  }
+
+  .policy_cnt_para {
+    width: 100%;
+  }
+
+  .policy_cnt_text {
+    flex: auto;
+  }
+
+  .changegrid .ch_trp_left_wrapper {
+    order: 2;
+  }
+
+  .changegrid .ch_trip_right {
+    order: 1;
+  }
+
+  .confimationtext_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cht_forming {
+    margin-top: 10px;
+  }
+
+  .cht_cnt {
+    margin-top: 25px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 15px;
+  }
+
+  .chtf_heading {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+  }
+
+  .chtf_pre_input {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .passreq {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+
+  .passreq p {
+    padding-right: 14px;
+  }
+
+  .chtfp_name > span {
+    flex-shrink: 0;
+    position: relative;
+    top: 4px;
+  }
+
+  .chtfp_name {
+    align-items: flex-start;
+  }
+
+  .chtfp_name p span {
+    padding: 8px 20px;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .add_bank button {
+    font-size: 18px;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+
+  .selectedpassname {
+    padding: 5px 10px;
+    margin-top: 8px;
+  }
+
+  .cht_condition {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .cht_terms input {
+    top: -12px;
+  }
+
+  .submit_check_form {
+    margin-top: 25px;
+  }
+
+  .submit_check_form button {
+    font-size: 15px;
+    gap: 8px;
+    padding: 8px 18px;
+  }
+
+  #card_number {
+    background-size: 90px;
+    padding-right: 110px;
+  }
+
+  .psng_wrapper {
+    width: 96%;
+  }
+
+  .psng_cnt {
+    padding: 15px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 15px 15px;
+    margin-top: 10px;
+    height: 495px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .psng_inpgrp_top .signin_input label {
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .psng_cnt_wrap form {
+    margin-top: 10px;
+  }
+
+  .psng_inpgrp_top {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .submit_form {
+    margin-top: 20px;
+  }
+
+  .psng_ask {
+    padding: 15px;
+  }
+
+  .psng_ask {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .psng_ask_right {
+    margin-left: 35px;
+  }
+
+  .chtfp_name p span {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+
+  .ch_trip_wrapper {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 30px;
+  }
+
+  .ch_trip_left_det_heading {
+    font-size: 1.3rem;
+  }
+
+  .ch_trip_det_cnt {
+    margin-top: 12px;
+  }
+
+  .ch_trip_left,
+  .cht_cnt {
+    padding: 0;
+  }
+
+  .ch_trip_cnt {
+    grid-template-columns: 1fr;
+  }
+
+  .trip_details_top {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .trip_pecenger {
+    margin-top: 5px;
+    margin-bottom: 14px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 20px;
+  }
+
+  .trip_date_oneway p {
+    margin-top: 10px !important;
+  }
+
+  .trip_one_date {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+  .checkbtn {
+    margin-top: 20px;
+  }
+
+  .ch_trip_right_cnt,
+  .che_trip_img {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_img_ch {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    row-gap: 20px;
+  }
+
+  .trip_img_ch_right h3 {
+    font-size: 25px;
+  }
+
+  .trip_img_ch_right p {
+    font-size: 20px;
+  }
+
+  .trip_img_ch_right p img {
+    display: inline-block;
+    width: 18px;
+  }
+
+  .tripbox {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .trip_place_left h3 {
+    min-width: 95px;
+    font-size: 22px;
+    padding: 8px 10px;
+  }
+
+  .time_calcu {
+    margin: 20px 0px;
+  }
+
+  .trip_cal_name {
+    font-size: 18px;
+  }
+
+  .trip_cal_number {
+    font-size: 14px;
+  }
+
+  .trip_cal_text:nth-child(2)::before {
+    right: -8px;
+  }
+
+  .trip_cal_text:nth-child(2)::after {
+    left: -8px;
+  }
+
+  .trip_total_cal {
+    padding: 20px 15px;
+  }
+
+  .ch_policy {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+  }
+
+  .ch_policy_wrapper {
+    max-width: 100%;
+  }
+
+  .policy_cnt_para {
+    width: 100%;
+  }
+
+  .policy_cnt_text {
+    flex: auto;
+  }
+
+  .changegrid .ch_trp_left_wrapper {
+    order: 2;
+  }
+
+  .changegrid .ch_trip_right {
+    order: 1;
+  }
+
+  .confimationtext_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cht_forming {
+    margin-top: 10px;
+  }
+
+  .cht_cnt {
+    margin-top: 25px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 15px;
+  }
+
+  .chtf_heading {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+  }
+
+  .chtf_pre_input {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .passreq {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+
+  .passreq p {
+    padding-right: 14px;
+  }
+
+  .chtfp_name > span {
+    flex-shrink: 0;
+    position: relative;
+    top: 4px;
+  }
+
+  .chtfp_name {
+    align-items: flex-start;
+  }
+
+  .chtfp_name p span {
+    padding: 8px 20px;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .add_bank button {
+    font-size: 18px;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+
+  .selectedpassname {
+    padding: 5px 10px;
+    margin-top: 8px;
+  }
+
+  .cht_condition {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .cht_terms input {
+    top: -24px;
+  }
+
+  .submit_check_form {
+    margin-top: 25px;
+  }
+
+  .submit_check_form button {
+    font-size: 15px;
+    gap: 8px;
+    padding: 8px 18px;
+  }
+
+  #card_number {
+    background-size: 90px;
+    padding-right: 110px;
+  }
+
+  .psng_wrapper {
+    width: 96%;
+  }
+
+  .psng_cnt {
+    padding: 15px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 15px 15px;
+    margin-top: 10px;
+    height: 495px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .psng_inpgrp_top .signin_input label {
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .psng_cnt_wrap form {
+    margin-top: 10px;
+  }
+
+  .psng_inpgrp_top {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .submit_form {
+    margin-top: 20px;
+  }
+
+  .psng_ask {
+    padding: 15px;
+  }
+
+  .psng_ask {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .psng_ask_right {
+    margin-left: 35px;
+  }
 }

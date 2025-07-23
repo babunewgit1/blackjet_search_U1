@@ -796,6 +796,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const stepTwoForm = document.querySelector(".cht_cnt");
       const stepOneForm = document.querySelector(".ch_trip_left");
       const backBtn = document.querySelector(".backbtn");
+      const changeGrid = document.querySelector(".ch_trip_cnt");
 
       cntBtn.addEventListener("click", function () {
         const checkDateValue = document.querySelector(
@@ -843,12 +844,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         // display step 2 form
         stepTwoForm.style.display = "block";
         stepOneForm.style.display = "none";
+        changeGrid.classList.add("changegrid");
       });
 
       // function for back button
       backBtn.addEventListener("click", function () {
         stepTwoForm.style.display = "none";
         stepOneForm.style.display = "block";
+        changeGrid.classList.remove("changegrid");
         detailsImg.innerHTML = "";
         confirmationText.innerHTML = "";
       });
