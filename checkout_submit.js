@@ -118,8 +118,6 @@ checkoutFnForm.addEventListener("submit", function (e) {
   if (leg_2_date) requestBody.leg_2_date = leg_2_date;
   if (leg_2_date_as_text) requestBody.leg_2_date_as_text = leg_2_date_as_text;
 
-  console.log(cc_number);
-
   completeBookingBtn.textContent = "Please Wait...";
 
   // API call
@@ -144,7 +142,7 @@ checkoutFnForm.addEventListener("submit", function (e) {
     })
     .then((data) => {
       console.log("API response:", data);
-      // window.location.href = "/checkout-confimation";
+      window.location.href = "/checkout-confimation";
       completeBookingBtn.textContent = "Complete Booking";
     })
     .catch((error) => {
