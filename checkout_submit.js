@@ -19,8 +19,6 @@ paymentOptions.forEach((option) => {
 checkoutFnForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  completeBookingBtn.textContent = "Please Wait...";
-
   const userEmail = Cookies.get("userEmail");
   const authToken = Cookies.get("authToken");
   if (!userEmail || !authToken) {
@@ -119,6 +117,8 @@ checkoutFnForm.addEventListener("submit", function (e) {
   if (cc_cvc) requestBody.cc_cvc = cc_cvc;
   if (leg_2_date) requestBody.leg_2_date = leg_2_date;
   if (leg_2_date_as_text) requestBody.leg_2_date_as_text = leg_2_date_as_text;
+
+  completeBookingBtn.textContent = "Please Wait...";
 
   // API call
   fetch(
