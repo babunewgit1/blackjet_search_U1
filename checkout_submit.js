@@ -3,6 +3,7 @@ const paymentOptions = document.querySelectorAll(".chtfp_name");
 const cardNumber = document.getElementById("card_number");
 const expireDate = document.getElementById("expire_date");
 const cvc = document.getElementById("cvc");
+const completeBookingBtn = document.querySelector(".complete_booking span");
 
 // make the input require when user will select the Credit Card method
 paymentOptions.forEach((option) => {
@@ -17,6 +18,9 @@ paymentOptions.forEach((option) => {
 
 checkoutFnForm.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  completeBookingBtn.textContent = "Please Wait...";
+
   const userEmail = Cookies.get("userEmail");
   const authToken = Cookies.get("authToken");
   if (!userEmail || !authToken) {
@@ -139,6 +143,7 @@ checkoutFnForm.addEventListener("submit", function (e) {
     .then((data) => {
       console.log("API response:", data);
       window.location.href = "/checkout-confimation";
+      completeBookingBtn.textContent = "Complete Booking";
     })
     .catch((error) => {
       alert("There was an error submitting the booking. Please try again.");
