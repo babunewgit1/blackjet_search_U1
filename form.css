@@ -309,6 +309,11 @@ p.forget_pass:hover {
   transform: scaleY(1);
 }
 
+.account_details {
+  top: 4.2rem;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
 .black {
   background-color: rgba(0, 0, 0, 0.9);
   position: sticky;
