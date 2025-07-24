@@ -503,3 +503,5 @@ async function sendFlightRequestIdsIfLoggedIn() {
   }
 }
 window.sendFlightRequestIdsIfLoggedIn = sendFlightRequestIdsIfLoggedIn;
+
+console.log("object", "testing");
