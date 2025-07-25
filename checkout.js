@@ -839,10 +839,10 @@ document.addEventListener("DOMContentLoaded", async function () {
           dataResponse.total
         ).toLocaleString()}`;
         const discountWareStr = `${Math.round(
-          dataResponse.total * 0.95
+          dataResponse.total * 0.05
         ).toLocaleString()}`;
         const discountBankStr = `${Math.round(
-          dataResponse.total * 0.95
+          dataResponse.total * 0.05
         ).toLocaleString()}`;
 
         document.querySelector("#total_price").textContent = totalPriceStr;
