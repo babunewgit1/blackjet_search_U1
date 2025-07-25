@@ -840,9 +840,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelector("#premail").value = dataResponse.email;
         document.querySelector(".chtf_heading a span").textContent =
           dataResponse.email;
-        const totalPriceStr = `$${Math.round(dataResponse.total)}`;
-        const discountWareStr = `${Math.round(dataResponse.total * 0.95)}`;
-        const discountBankStr = `${Math.round(dataResponse.total * 0.95)}`;
+        const totalPriceStr = `$${Math.round(
+          dataResponse.total
+        ).toLocaleString()}`;
+        const discountWareStr = `${Math.round(
+          dataResponse.total * 0.95
+        ).toLocaleString()}`;
+        const discountBankStr = `${Math.round(
+          dataResponse.total * 0.95
+        ).toLocaleString()}`;
 
         document.querySelector("#total_price").textContent = totalPriceStr;
         document.querySelector("#discount_ware").textContent = discountWareStr;
