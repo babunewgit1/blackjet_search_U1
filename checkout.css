@@ -657,7 +657,7 @@
   border-left: 0;
 }
 
-.chtfp_name p span {
+.chtfp_name p > span {
   display: inline-block;
   font-size: 16px;
   letter-spacing: normal;
