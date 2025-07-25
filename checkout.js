@@ -765,22 +765,17 @@ document.addEventListener("DOMContentLoaded", async function () {
       tripRightTotal.innerHTML = `
         <div class="trip_total_cal">
           <div class="trip_total_tax">
-            <p>${dataResponse.category} <span>$${(
+            <p>${dataResponse.category} <span>$${Math.round(
         dataResponse.total - dataResponse.tax
-      ).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })}</span></p>
-            <p>Tax <span>$${dataResponse.tax.toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}</span></p>
+      ).toLocaleString()}</span></p>
+            <p>Tax <span>$${Math.round(
+              dataResponse.tax
+            ).toLocaleString()}</span></p>
           </div>
           <div class="trip_total_number">
-            <p>Total <span>$${dataResponse.total.toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}</span></p>
+            <p>Total <span>$${Math.round(
+              dataResponse.total
+            ).toLocaleString()}</span></p>
           </div>
         </div>
         
