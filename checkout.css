@@ -1,6 +1,6 @@
 /* code for map - start */
 #map {
-  height: 550px;
+  height: 300px;
   width: 100%;
 }
 
@@ -1268,8 +1268,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
   #map {
-    height: 500px;
-    width: 100%;
+    display: none;
   }
 
   .ch_trip_wrapper {
@@ -1555,8 +1554,7 @@
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
   #map {
-    height: 400px;
-    width: 100%;
+    display: none;
   }
 
   .ch_trip_wrapper {
@@ -1842,8 +1840,7 @@
 
 @media screen and (max-width: 576px) {
   #map {
-    height: 400px;
-    width: 100%;
+    display: none;
   }
 
   .ch_trip_wrapper {
