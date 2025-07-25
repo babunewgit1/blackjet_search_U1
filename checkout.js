@@ -840,7 +840,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelector("#premail").value = dataResponse.email;
         document.querySelector(".chtf_heading a span").textContent =
           dataResponse.email;
-        document.querySelector("#total_price").textContent = dataResponse.total;
+        document.querySelector("#total_price").textContent = `$${Math.round(
+          dataResponse.total
+        )}`;
+
+        document.querySelector("#discount_ware").textContent = Math.round(
+          dataResponse.total * 0.95
+        );
+
+        document.querySelector("#discount_bank").textContent = Math.round(
+          dataResponse.total * 0.95
+        );
 
         // display step 2 form
         stepTwoForm.style.display = "block";
