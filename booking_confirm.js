@@ -128,10 +128,9 @@ window.addEventListener("DOMContentLoaded", function () {
                <img class="icondesktop" src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6880b6b5fa783378bd04b8eb_bkimg.png" alt="plan icon" />
                <img class="iconmobile" src="https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68823866dceb0d35491dcedf_icon.png" alt="plan icon" />
                <h3>Flight confirmed. Your Booking is done.</h3>
-               <p>A payment has been made for the amount of <strong>$${bookingData.total_charge.toLocaleString(
-                 undefined,
-                 { minimumFractionDigits: 2, maximumFractionDigits: 2 }
-               )}</strong> and Your trip ID is <strong>#${
+               <p>A payment has been made for the amount of <strong>$${Math.round(
+                 bookingData.total_charge
+               ).toLocaleString()}</strong> and Your trip ID is <strong>#${
         bookingData.reference_number
       }.</strong> Please use this trip ID for any communication with us. We will email your ticket shortly. Thank you for booking with <strong>BlackJet 2.0</strong></p>
             </div>
@@ -162,14 +161,18 @@ window.addEventListener("DOMContentLoaded", function () {
                   </div>
                   <div class="bktotal_charge">
                      <h4>Total Charge</h4>
-                     <h3>$${bookingData.total_charge.toLocaleString()}</h3>
+                     <h3>$${Math.round(
+                       bookingData.total_charge
+                     ).toLocaleString()}</h3>
                   </div>
                   <div class="bkcost_list">
                      <ul>
-                        <li>${
-                          bookingData.category
-                        } <span>$${bookingData.total_charge.toLocaleString()}</span></li>
-                        <li>Tax <span>$${bookingData.tax.toLocaleString()}</span></li>
+                        <li>${bookingData.category} <span>$${Math.round(
+        bookingData.total_charge
+      ).toLocaleString()}</span></li>
+                        <li>Tax <span>$${Math.round(
+                          bookingData.tax
+                        ).toLocaleString()}</span></li>
                      </ul>
                   </div>
                   <div class="bkcost_button">
