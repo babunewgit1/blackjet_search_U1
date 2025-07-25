@@ -836,10 +836,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         // fill checkout stepone info from api data.
         document.querySelector("#prefirstname").value = dataResponse.first_name;
         document.querySelector("#prelastname").value = dataResponse.last_name;
-        document.querySelector("#prephone").value = dataResponse.phone;
+        document.querySelector("#prephone").value = dataResponse.phone || "";
         document.querySelector("#premail").value = dataResponse.email;
         document.querySelector(".chtf_heading a span").textContent =
           dataResponse.email;
+        document.querySelector("#total_price").textContent = dataResponse.total;
 
         // display step 2 form
         stepTwoForm.style.display = "block";
