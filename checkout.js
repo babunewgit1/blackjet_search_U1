@@ -1360,7 +1360,9 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.removeItem("frequestid");
         sessionStorage.removeItem("storeData");
         notEmailPopUp.style.display = "none";
-        window.location.href = "/";
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 300);
 
         // Update UI for logged out state
         updateUIForLoggedInUser(null);
