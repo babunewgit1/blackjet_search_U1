@@ -1362,7 +1362,7 @@ document.addEventListener("DOMContentLoaded", function () {
         notEmailPopUp.style.display = "none";
         setTimeout(() => {
           window.location.href = "/";
-        }, 300);
+        }, 500);
 
         // Update UI for logged out state
         updateUIForLoggedInUser(null);
