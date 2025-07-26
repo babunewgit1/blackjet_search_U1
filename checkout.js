@@ -1359,6 +1359,8 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.removeItem("aircraftid");
         sessionStorage.removeItem("frequestid");
         sessionStorage.removeItem("storeData");
+        notEmailPopUp.style.display = "none";
+        window.location.href = "/";
 
         // Update UI for logged out state
         updateUIForLoggedInUser(null);
