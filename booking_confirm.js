@@ -167,9 +167,9 @@ window.addEventListener("DOMContentLoaded", function () {
                   </div>
                   <div class="bkcost_list">
                      <ul>
-                        <li>${bookingData.category} <span>$${Math.round(
-        bookingData.total_charge
-      ).toLocaleString()}</span></li>
+                        <li>${bookingData.category} <span>
+  ${Math.round(bookingData.total_charge - bookingData.tax).toLocaleString()}
+</span></li>
                         <li>Tax <span>$${Math.round(
                           bookingData.tax
                         ).toLocaleString()}</span></li>

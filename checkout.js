@@ -1311,3 +1311,71 @@ function attachRemoveSelectedPassengerListeners(
       });
     });
 }
+
+// not this email (give permission to user change their mail in checkout page)
+document.addEventListener("DOMContentLoaded", function () {
+  const notEmail = document.querySelector(".chtf_heading > a");
+  const notEmailPopUp = document.querySelector(".notmail");
+  const notMailCancel = document.querySelector(".lgcancel");
+  const notMailAgree = document.querySelector(".lg_confirm");
+  notEmail.addEventListener("click", function () {
+    notEmailPopUp.style.display = "flex";
+  });
+
+  notMailCancel.addEventListener("click", function () {
+    notEmailPopUp.style.display = "none";
+  });
+
+  notMailAgree.addEventListener("click", async () => {
+    try {
+      // Get the auth token from cookies
+      const token = Cookies.get("authToken");
+
+      if (!token) {
+        showToastMessage(
+          "Authentication token is missing. Please log in again."
+        );
+        return;
+      }
+
+      // Hit the logout API endpoint
+      const response = await fetch(
+        "https://operators-dashboard.bubbleapps.io/api/1.1/wf/webflow_logout_blackjet",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        // Clear cookies
+        Cookies.remove("userEmail");
+        Cookies.remove("authToken");
+        Cookies.remove("userFirstName");
+        Cookies.remove("userLastName");
+        sessionStorage.removeItem("aircraftid");
+        sessionStorage.removeItem("frequestid");
+        sessionStorage.removeItem("storeData");
+
+        // Update UI for logged out state
+        updateUIForLoggedInUser(null);
+
+        // Remove show_account class
+        const accountDetails = document.querySelector(".account_details");
+        if (accountDetails) {
+          accountDetails.classList.remove("show_account");
+        }
+
+        showToastMessage("Logged out successfully!");
+      } else {
+        showToastMessage("Logout failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      showToastMessage("An error occurred during logout. Please try again.");
+    }
+  });
+});
