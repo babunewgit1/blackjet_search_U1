@@ -1235,6 +1235,11 @@
     margin-top: 5px;
   }
 
+  #discount_bank,
+  #discount_ware {
+    display: inline-block !important;
+  }
+
   .chtfp_name {
     align-items: flex-start;
   }
@@ -1458,10 +1463,15 @@
     align-items: flex-start;
   }
 
-  .chtfp_name p span {
+  .chtfp_name p > span {
     padding: 8px 20px;
     margin-left: 0;
     margin-top: 5px;
+  }
+
+  #discount_ware,
+  #discount_bank {
+    display: inline-block !important;
   }
 
   .add_bank button {
@@ -1744,10 +1754,15 @@
     align-items: flex-start;
   }
 
-  .chtfp_name p span {
+  .chtfp_name p > span {
     padding: 8px 20px;
     margin-left: 0;
     margin-top: 5px;
+  }
+
+  #discount_bank,
+  #discount_ware {
+    display: inline-block !important;
   }
 
   .add_bank button {
@@ -2030,7 +2045,7 @@
     align-items: flex-start;
   }
 
-  .chtfp_name p span {
+  .chtfp_name p > span {
     padding: 8px 20px;
     margin-left: 0;
     margin-top: 5px;
