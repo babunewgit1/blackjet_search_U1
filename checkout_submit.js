@@ -67,7 +67,7 @@ checkoutFnForm.addEventListener("submit", function (e) {
     alert("Please select a payment method.");
     return;
   }
-  const paymentText = selected.querySelector("p").innerText.trim();
+  const paymentText = selected.querySelector(".pmtext").innerText.trim();
 
   // Collect selected passenger IDs
   const selectedIds = Array.from(

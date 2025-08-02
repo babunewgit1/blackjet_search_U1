@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+.pmtext {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline !important;
+  font-weight: normal !important;
+}
+
 .airport-marker {
   display: flex;
   align-items: center;
