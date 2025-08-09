@@ -227,7 +227,10 @@ document.addEventListener("DOMContentLoaded", () => {
           // Redirect to homepage if flagged
           if (sessionStorage.getItem("redirectAfterLogin") === "true") {
             sessionStorage.removeItem("redirectAfterLogin");
-            window.location.href = "/checkout";
+            const redirectTo =
+              sessionStorage.getItem("redirectTo") || "/checkout";
+            sessionStorage.removeItem("redirectTo");
+            window.location.href = redirectTo;
           }
 
           // Update account details heading
@@ -316,7 +319,10 @@ document.addEventListener("DOMContentLoaded", () => {
           // Redirect to homepage if flagged
           if (sessionStorage.getItem("redirectAfterLogin") === "true") {
             sessionStorage.removeItem("redirectAfterLogin");
-            window.location.href = "/checkout";
+            const redirectTo =
+              sessionStorage.getItem("redirectTo") || "/checkout";
+            sessionStorage.removeItem("redirectTo");
+            window.location.href = redirectTo;
           }
 
           // Update account details heading
